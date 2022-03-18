@@ -66,6 +66,7 @@ if (isset($_POST['regBtn']))
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<div class="panel-title">Reg&iacute;strate</div>
+						<div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="index.php">Iniciar Sesi&oacute;n</a></div>
 					</div>  
 
 					<div class="panel-body" >
@@ -74,7 +75,7 @@ if (isset($_POST['regBtn']))
 
 							
 							<div class="form-group">
-								<label for="usuario" class="col-md-3 control-label">Usuario</label>
+								<label for="username" class="col-md-3 control-label">Usuario</label>
 								<div class="col-md-9">
 									<input type="text" class="form-control" name="username" placeholder="Usuario" >
 								</div>

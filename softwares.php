@@ -225,12 +225,6 @@ $con=0;
 
 				</div>	
 			</div>
-
-			<div class="row">
-				<div class="col-md-12">
-					<p align="center">Copyright © 2020 Master-db. Todos los derechos reservados. Desarrollado por el David Belmares// <a>BootStraps HTML5 + CSS3 + PHP</a> <a href="https://postparaprogramadores.com/libro-bootstraps/"></a></p>
-				</div>
-			</div>
 			
 		</div>
 

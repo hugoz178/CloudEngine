@@ -55,6 +55,7 @@ $camp = $_SESSION['username'];
 					<div class="btn-group-vertical" style="width:280px">
 						<a href="misjuegos.php" class="btn"><h2 style="color:#5D00B9">Mis juegos</h2></a><br>
 						<a href="" class="btn"><h2 style="color:#5D00B9">Mi carrito</h2></a><br>
+						<a type="button" class="btn"><h2 style="color:#5D00B9" data-bs-toggle="modal" data-bs-target="#myModal">Contactanos</h2></a><br>
 						<a href="logout.php" class="btn"><h2 style="color:#5D00B9">Cerrar sesión</h2></a>
 					</div>
 				  </div>
@@ -128,7 +129,42 @@ $camp = $_SESSION['username'];
 				</div>
 
 
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
 
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Escribe tu opinon</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form id="form" name="form" class="form-horizontal" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
+
+        	<div class="form-group">
+        		<input type="text" name="asunto" placeholder="Escribe el asunto">
+        	</div>
+        	<div class="form-group">
+        		<textarea placeholder="Escribe tu opinon"></textarea>
+        	</div>
+        	<div class="form-group">
+        		<button id="regBtn" name="regBtn" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Enviar opinon</button>
+        	</div>
+        	<div class="form-group"></div>
+
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>			
 
 
 

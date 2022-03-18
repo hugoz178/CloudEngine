@@ -1,3 +1,11 @@
+<?php
+ob_start() ;
+session_start();
+include("php/conexion.php");
+$camp = $_SESSION['username']; 
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +18,12 @@
 	<title></title>
 </head>
 <body>
-	
+
+	<form id="form" name="form" class="form-horizontal" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
+
+
+
+	</form>
 
 </body>
 </html>
