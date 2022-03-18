@@ -81,22 +81,38 @@ if (isset($_POST['actualizar']))
 		<link rel="stylesheet" href="css/style.css">
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<title></title>
 </head>
-<body>
-	<nav class="navbar navbar-inverse" style="background-color:black;">
-		<div class="container-fluid ">
-			<div class="navbar-header">
-				<a class="navbar-brand" >web-Agenda Mis Contactos®</a>
+<body style="background-color:#000000">
+		<nav class="navbar navbar-inverse" style="background-color:black;">
+			<div class="container-fluid ">
+				<div class="navbar-header">
+					  <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+					    <i class='fas fa-bars' style='font-size:36px; color:#5D00B9;'></i>
+					  </button>
+				</div>
+				<ul class="nav navbar-nav">
+					<h1>Cloud Engine</h1>
+				</ul>
+
 			</div>
-			<ul class="nav navbar-nav">
-				<li class="active"><a><font size=4><?php echo $_SESSION['username'] ?></a></li>
-			</ul>
-			<ul class="nav navbar-nav">
-				<li><a href="logout.php"><font size=4>Cerrar Sesión</a></li>
-			</ul>
-		</div>
-	</nav> 
+		</nav> 
+
+				<div class="offcanvas offcanvas-start" id="demo" style="background-color:#050503">
+				  <div class="offcanvas-header">
+				    <center><h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $_SESSION['username'] ?></h2></center>
+				    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+				  </div>
+				  <div class="offcanvas-body">
+				  	<div class="btn-group-vertical" style="width:280px">
+						<a href="vista_admin.php" class="btn"><h2 style="color:#5D00B9">Inicio</h2></a><br>
+            <br>
+						<a href="logout.php" class="btn"><h2 style="color:#5D00B9">Cerrar sesión</h2></a>
+				  	</div>
+				  </div>
+				</div>
 
 
 		<!-- <div align="center">
@@ -111,49 +127,52 @@ if (isset($_POST['actualizar']))
 
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							<input id="idSoft" type="text" class="form-control input-lg" placeholder="idSoft" name="idSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['idSoft']?>">
+							<input id="idSoft" type="text" class="form-control input-lg" placeholder="idSoft" style="background-color: #2D2D2D; color:white;" name="idSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['idSoft']?>">
 						</div><br>
 
 
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							<input id="nombreSoft" type="text" class="form-control input-lg" placeholder="Nombre del software" name="nombreSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['nombreSoft']?>">
+							<input id="nombreSoft" type="text" class="form-control input-lg" placeholder="Nombre del software" style="background-color: #2D2D2D; color:white;" name="nombreSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['nombreSoft']?>">
 						</div><br>
 
 
 						<div class="input-group">
 							<span class="input-group-addon"></span>
-							<input class="btn form-control input-lg" type="file" name="fotoSoft" id="fotoSoft">
+							<input class="btn form-control input-lg" style="background-color: #2D2D2D; color:white;" type="file" name="fotoSoft" id="fotoSoft">
 						</div><br>
 
 						<div class="input-group">
-							<input id="descripcionSoft" type="text" class="form-control input-lg" placeholder="Descripcion del software" name="descripcionSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['descripcionSoft']?>">
+							<input id="descripcionSoft" type="text" class="form-control input-lg" placeholder="Descripcion del software" name="descripcionSoft" style="background-color: #2D2D2D; color:white;" value="<?php if (isset($_POST['buscar'])) echo $campo['descripcionSoft']?>">
 						</div><br>
 
 
 						<div class="input-group">
-							<input id="costoSoft" type="text" class="form-control input-lg" placeholder="Precio del softwareftware" name="costoSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['costoSoft']?>" >
+							<input id="costoSoft" type="text" class="form-control input-lg" placeholder="Precio del softwareftware" style="background-color: #2D2D2D; color:white;" name="costoSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['costoSoft']?>" >
 						</div><br>
 
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-							<input id="categoriaSoft" type="text" class="form-control input-lg" placeholder="Categoria" name="categoriaSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['categoriaSoft']?>">
+							<input id="categoriaSoft" type="text" style="background-color: #2D2D2D; color:white;" class="form-control input-lg" placeholder="Categoria" name="categoriaSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['categoriaSoft']?>">
 						</div><br>
 
-						<button type="submit" class="btn btn-primary btn-lg btn-warning" name="registrar">Registrar</button>
+						<center>
+						<button type="submit" class="btn" style="background-color:#5D00B9" name="registrar"><i class='fas fa-plus' style='color:white; font-size:26px'></i></button>
 
-						<button type="submit" class="btn btn-primary btn-lg btn-warning" name="eliminar">Eliminar</button>
+						<button type="submit" class="btn" style="background-color:#5D00B9" name="eliminar"><i class="material-icons" style='color:white; font-size:26px'>delete</i></button>
+						
+						
+						<button type="submit" class="btn" style="background-color:#5D00B9" name="buscar"><i class='fas fa-search' style='color:white; font-size:26px'></i></button>
 
-						<button type="submit" class="btn btn-primary btn-lg btn-warning" name="buscar">Buscar</button>
-
-						<button type="submit" class="btn btn-primary btn-lg btn-warning" name="actualizar">Actualizar</button>
-
+						<button type="submit" class="btn" style="background-color:#5D00B9" name="actualizar"><i class="material-icons" style='color:white; font-size:26px'>edit</i></button>
+						</center>
 					</form>
 				</div>
 
 				<div class="col-md-8">
 <br><br>
-<div class="container-fluid" id="Layer1" style="width:100%; height:480px; overflow: scroll;">
+<div class="container-fluid" id="Layer1" style="width:100%; height:550px; overflow: auto; border: 1px solid #5D00B9;">
+	<center>
 		<table>
       <br>
        <tr>
@@ -165,20 +184,27 @@ if (isset($_POST['actualizar']))
 ?>
 <td>
     <?php echo '
-<div class="container mt-3">
-  <h3>'.$row['nombreSoft'].'</h3>
-  <p><small>ID:'.$row['idSoft'].' </small></p>
-  <p>'.$row['descripcionSoft'].'</p>
-  
-  <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="'."#".$row['idSoft'].'" href="infsoftware.php?id='.$row['idSoft'].'">
-    Open modal
-  </a>
-</div>';
+													<div class="card card-cascade narrower" style="background-color:#050503;" >
+												  <div class="view view-cascade overlay"">
+												  <center>
+												  <img src="https://laverdadnoticias.com/__export/1598298460906/sites/laverdad/img/2020/08/24/zoro_one_piece_anime.jpg_423682103.jpg" class="card-img-top" alt="photo" style="width:300px; height:300px;">
+												    </center>
+												    <a>
+												      <div class="mask rgba-white-slight"></div>
+												    </a>
+												  </div>
+												  <div class="card-body card-body-cascade">
+												    <h5 class="text-white pb-2 pt-1"><i class="fas fa-shopping-bag"></i>  '.$row['categoriaSoft'].'</h5>
+												    <h4 class="font-weight-bold card-title text-white">'.$row['nombreSoft'].'</h4>
+												    <p class="card-text text-white">'.$row['descripcionSoft'].'</p>
+												    <a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id='.$row['idSoft'].'">Obervar Software</a>
+												  </div>
+												</div>';
 ?>
 </td>
 <?php
 $con=$con+1;
-if($con==1){
+if($con==2){
 echo "</tr>
 <tr>";
 $con=0;
@@ -187,7 +213,7 @@ $con=0;
       ?>  
       </tr>     
       </table>
-
+    </center>
 
 </div>
 

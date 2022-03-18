@@ -18,17 +18,18 @@ require_once 'php/conexion.php';
 		<link rel="stylesheet" href="css/style.css">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
 	</head>
 
-	<body background="images/banner.jpg">
+	<body style="overflow-x:hidden; background-color:#000000;">
 
 		<nav class="navbar navbar-inverse" style="background-color:black;">
 			<div class="container-fluid ">
 				<div class="navbar-header">
-					<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-					  Open Offcanvas Sidebar
-					</button>
+					  <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+					    <i class='fas fa-bars' style='font-size:36px; color:#5D00B9;'></i>
+					  </button>
 				</div>
 				<ul class="nav navbar-nav">
 					<h1>Cloud Engine</h1>
@@ -37,32 +38,35 @@ require_once 'php/conexion.php';
 			</div>
 		</nav> 
 
-		<div class="offcanvas offcanvas-start" id="demo">
- <div class="offcanvas-header">
-    <h1 class="offcanvas-title"><?php echo $campo ?></h1>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
-  </div>
-  <div class="offcanvas-body">
-    <a href="softwares.php">Añade Software</a>
-    <a href="logout.php">Cerrar Sesión</a>
-  </div>
-</div>
+				<div class="offcanvas offcanvas-start" id="demo" style="background-color:#050503">
+				  <div class="offcanvas-header">
+				    <center><h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $campo ?></h2></center>
+				    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+				  </div>
+				  <div class="offcanvas-body">
+				  	<div class="btn-group-vertical" style="width:280px">
+						<a href="softwares.php" class="btn"><h2 style="color:#5D00B9">Añadir softwares</h2></a><br>
+            <br>
+						<a href="logout.php" class="btn"><h2 style="color:#5D00B9">Cerrar sesión</h2></a>
+				  	</div>
+				  </div>
+				</div>
 
 
 
 		<div class="row">
 			<div class="col-md-4">
-				<div class="card">
+				<div class="card" style="background-color: #050503; border: 1px solid white;">
 					<div class="card-body">
-						<div class="container-fluid" id="Layer1" style="width:100%; height:480px; overflow: scroll;">
+						<div class="container-fluid" id="Layer1" style="width:100%; height:480px; overflow: auto;">
 							<?php
 							$consCS=$cnx->query("SELECT * FROM comentarios");
 							while ($verCS=mysqli_fetch_array($consCS)) {
 								?>
 								<img src="https://i.pinimg.com/originals/bb/3d/43/bb3d43fa506c564d150130d91ed4b21b.jpg"  class="mr-3 mt-3" style="width:10%;">
-								<h4><?php echo $verCS['username'] ?></h4>
-								<p><small><?php echo $verCS['fechaCom'] ?></small></p>
-								<p><?php echo $verCS['comSoft'] ?><p> 
+								<h4 class="text-white"><?php echo $verCS['username'] ?></h4>
+								<p class="text-white"><small><?php echo $verCS['fechaCom'] ?></small></p>
+								<p class="text-white"><?php echo $verCS['comSoft'] ?><p> 
 									<?php
 								}
 								?>		
@@ -72,7 +76,8 @@ require_once 'php/conexion.php';
 				</div>
 			</div>
 				<div class="col-md-8">
-					<div class="container-fluid" id="Layer2" style="width:100%; height:480px; overflow: scroll;">
+					<div class="container-fluid" id="Layer2" style="width:100%; height:512px; overflow: auto; border: 1px solid #5D00B9">
+								<center>
 									<table>
 										<br>
 										<tr>
@@ -84,19 +89,27 @@ require_once 'php/conexion.php';
 												?>
 												<td>
 													<?php echo '
-													<div class="container mt-3">
-													<h3>'.$row['nombreSoft'].'</h3>
-													<p>'.$row['descripcionSoft'].'</p>
-													
-													<a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="'."#".$row['idSoft'].'" href="infsoftware.php?id='.$row['idSoft'].'">
-													Open modal
-													</a>
-													</div>';
+													<div class="card card-cascade narrower" style="background-color:#050503;" >
+												  <div class="view view-cascade overlay"">
+												  <center>
+												  <img src="https://laverdadnoticias.com/__export/1598298460906/sites/laverdad/img/2020/08/24/zoro_one_piece_anime.jpg_423682103.jpg" class="card-img-top" alt="photo" style="width:300px; height:300px;">
+												    </center>
+												    <a>
+												      <div class="mask rgba-white-slight"></div>
+												    </a>
+												  </div>
+												  <div class="card-body card-body-cascade">
+												    <h5 class="text-white pb-2 pt-1"><i class="fas fa-shopping-bag"></i>  '.$row['categoriaSoft'].'</h5>
+												    <h4 class="font-weight-bold card-title text-white">'.$row['nombreSoft'].'</h4>
+												    <p class="card-text text-white">'.$row['descripcionSoft'].'</p>
+												    <a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id='.$row['idSoft'].'">Obervar Software</a>
+												  </div>
+												</div>';
 													?>
 												</td>
 												<?php
 												$con=$con+1;
-												if($con==1){
+												if($con==2){
 													echo "</tr>
 													<tr>";
 													$con=0;
@@ -105,6 +118,7 @@ require_once 'php/conexion.php';
 											?>  
 										</tr>     
 									</table>
+								</center>
 					</div>
 				</div>
 

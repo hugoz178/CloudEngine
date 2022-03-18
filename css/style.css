@@ -1,14 +1,14 @@
 @charset "utf-8";
 /* CSS Document */
 body {
-  background: #177EA5  ;
+  background-color: #050503  ;
 }
 
 .login {
   margin: 60px auto;
   width: 350px;
   padding: 30px 25px;
-  background: #f7f7f7;
+  background-color: #050503;
   border: 1px solid #c4c4c4;
 }
 
@@ -20,7 +20,7 @@ h1.login-title {
   font-weight: 300;
   color: #ADADAD;
   text-align:center;
-  background: #f7f7f7;
+  background: #050503;
  
 }
 
@@ -30,7 +30,7 @@ h1.login-title {
   margin-bottom: 25px;
   padding-left:10px;
   font-size: 15px;
-  background: #fff;
+  background-color: #050503;
   border: 1px solid #ccc;
   border-radius: 4px;
 }

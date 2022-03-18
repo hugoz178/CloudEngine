@@ -45,13 +45,9 @@ if (isset($_POST['regBtn']))
 
 	<!-- icono de la pagina -->
 	<link rel="icon" href="images/icons/agenda.png">
-	
-	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-	<script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>	
 </head>
 
 <body background="images/banner.jpg">
@@ -70,12 +66,11 @@ if (isset($_POST['regBtn']))
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<div class="panel-title">Reg&iacute;strate</div>
-						<div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="index.php">Iniciar Sesi&oacute;n</a></div>
 					</div>  
 
 					<div class="panel-body" >
 
-						<form id="signupform" class="form-horizontal" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
+						<form id="form" name="form" class="form-horizontal" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
 
 							
 							<div class="form-group">
@@ -124,7 +119,7 @@ if (isset($_POST['regBtn']))
 	</html>															
 
 
-	<script type="text/javascript">
+<script type="text/javascript">
 
 //java
 
@@ -142,7 +137,7 @@ $( "#form" ).bootstrapValidator({
  
    fields: {
  
-     usuario: {
+     username: {
  
        validators: {
  
@@ -152,21 +147,13 @@ $( "#form" ).bootstrapValidator({
  
          },
 
-         regexp: {
-
-                regexp: /[a-zs]/i,
-
-                message: 'El nombre de usuario no permite el uso de dígitos ni caracteres especiales.\n'
-
-          },
-
          stringLength: {
  
            min: 5,
 
            max: 15,
  
-           message: 'Tu nombre de usuario debe de tener por lo menos 5 caracteres de longitud y 15 como máximo.'
+           message: 'Tu nombre de usuario debe de tener por lo menos 5 caracteres de longitud y 10 como máximo.'
  
          }
  
@@ -176,7 +163,7 @@ $( "#form" ).bootstrapValidator({
 
 
 
-     correo: {
+     email: {
  
        validators: {
 
@@ -196,9 +183,41 @@ $( "#form" ).bootstrapValidator({
  
      },
 
+     celular: {
+			 
+			 message: 'Ingrese Su Número De Celular',
+			 
+			 validators: {
+				 
+				 notEmpty: {
+					 
+					 message: 'Ingrese Su Número De Celular'
+				 },
+
+				 regexp: {
+
+					 regexp: /^[0-9]+$/,
+
+					 message: 'El Número de Celular Solo Puede Contener Digitos'
+				 },
+
+         stringLength: {
+ 
+           min: 10,
+
+           max: 10,
+ 
+           message: 'Tu numero debe ser de 10 digitos'
+ 
+         }	
+
+			 }
+
+
+		 },
 
  
-     contrasena: {
+     password: {
  
        validators: {
  
@@ -211,7 +230,7 @@ $( "#form" ).bootstrapValidator({
          stringLength: {
  
            min: 5,
-     max:25,
+     			max:25,
  
            message: 'Maximo 5 caracteres y maximo 25.\n'
  
@@ -222,27 +241,6 @@ $( "#form" ).bootstrapValidator({
                         message:'Confirma tu contraseña. '
                     }
 
- 
-       }
- 
-     },
- 
-     
-     confirmar: {
- 
-       validators: {
- 
-         notEmpty: {
- 
-           message: 'Debes de confirmar tu contraseña.'
- 
-         },
-
-
-         identical: {
-                        field: 'contrasena',
-                        message: 'La contraseñas deben de ser iguales.'
-                    }
  
        }
  
