@@ -180,7 +180,7 @@ $date= date("d-M-Y");
           </div>
           <div class="offcanvas-body">
             <div class="btn-group-vertical" style="width:280px">
-            <a href="index.php" class="btn"><h2 style="color:#5D00B9">Inicio</h2></a><br>
+            <a href="vista_usuario.php" class="btn"><h2 style="color:#5D00B9">Inicio</h2></a><br>
             <a href="" class="btn"><h2 style="color:#5D00B9">Mi carrito</h2></a><br>
             <a href="logout.php" class="btn"><h2 style="color:#5D00B9">Cerrar sesión</h2></a>
             </div>
