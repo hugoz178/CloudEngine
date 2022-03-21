@@ -8,8 +8,8 @@ if ($camp == null || $camp = '' || $camp != 'hugoz178'){
  }
 
 require_once 'php/conexion.php';
-$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&';
-$cadena = substr(str_shuffle($permitted_chars), 1, 10);
+#$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+#$cadena = substr(str_shuffle($permitted_chars), 10, 10);
 
 
 
@@ -21,7 +21,7 @@ if (isset($_POST['registrar']))
 	$catS=$_REQUEST["categoriaSoft"];
 	$foto = addslashes(file_get_contents($_FILES['foto']['tmp_name']));
 
-	$insertar=("INSERT into software (idSoft,nombreSoft, fotoSoft, descripcionSoft,costoSoft, categoriaSoft,username) values('$cadena','$nomS', '$foto','$desS','$cosS','$catS','$camp')");
+	$insertar=("INSERT into software (nombreSoft, fotoSoft, descripcionSoft,costoSoft, categoriaSoft,username) values('$nomS', '$foto','$desS','$cosS','$catS','$camp')");
 	$resultado=mysqli_query($cnx,$insertar);
 
 	if (!$resultado) {
