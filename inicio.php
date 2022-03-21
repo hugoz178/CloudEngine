@@ -10,7 +10,6 @@ if (isset($_POST['regBtn']))
   $mail = $_POST['email'];
   $cel = $_POST['celular'];
   $psw = $_POST['password'];
-  $foto = addslashes(file_get_contents($_FILES['images/fotousuario.png']['tmp_name']));
   $encriptsha = sha1($psw);
   #$message = '<!--DOCTYPE html>
   /*<html>
@@ -27,8 +26,8 @@ if (isset($_POST['regBtn']))
   #$cabeceras = 'MIME-Version: 1.0' . "\r\n";
   #$cabeceras .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 
-  $registrar = "INSERT INTO usuarios (username,email,foto,celular,password)
-  VALUES ('$user','$mail','$foto','$cel','$encriptsha');";
+  $registrar = "INSERT INTO usuarios (username,email,celular,password)
+  VALUES ('$user','$mail','$cel','$encriptsha');";
   #$cor =mail($mail,"Registro con exito. Bienvenido a Electroniknet!",$message,$cabeceras);
   $listo = mysqli_query($cnx,$registrar);
 

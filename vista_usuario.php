@@ -1,18 +1,26 @@
-
 <?php
 ob_start() ;
-?>
-
-<!-- Iniciar Sesión -->
-<?php
 session_start();
-?>
-
-<!-- Códigos de CONEXION -->
-<?php
 include("php/conexion.php");
 $camp = $_SESSION['username']; 
-	#require_once('php/conexion.php');
+	
+if (isset($_POST['opBtn'])) 
+{
+
+	$as = $_POST['asunto'];
+	$op = $_POST['opinion'];
+
+	$registrar = "INSERT INTO opiniones (username,asunto,opinion)
+	VALUES ('$camp','$as','$op');";
+
+	$listo = mysqli_query($cnx,$registrar);
+
+	if ($listo) {
+		header("Location:vista_usuario.php?correcto=1");
+	}else{
+		echo 'error';
+	}
+}
 ?>
 
 <!doctype html>
@@ -63,6 +71,14 @@ $camp = $_SESSION['username'];
 
 
 				<div class="row">
+					       <?php
+      if (isset($_GET['error'])) {
+        echo "<center><div class='alert alert-danger'>Ya tienes datos guardados.</div></center><br>";
+      }
+      if (isset($_GET['correcto'])) {
+        echo "<center><div class='alert alert-success'><p>Corectoo</p></div></center><br>";
+      }
+    	?>
 					<div class="col-md-2"> </div>
 					<div class="col-md-8">
 						<div class="card" style="height:900px; background-color:#000000;">
@@ -85,7 +101,7 @@ $camp = $_SESSION['username'];
 														<div class="card card-cascade narrower" style="background-color:#050503;" >
 												  <div class="view view-cascade overlay"">
 												  <center>
-												  <img src="https://laverdadnoticias.com/__export/1598298460906/sites/laverdad/img/2020/08/24/zoro_one_piece_anime.jpg_423682103.jpg" class="card-img-top" alt="photo" style="width:300px; height:300px;">
+												  <img src="data:image/png;base64,'.base64_encode($row['fotoSoft']). '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
 													</center>
 													<a>
 													  <div class="mask rgba-white-slight"></div>
@@ -143,14 +159,16 @@ $camp = $_SESSION['username'];
       <div class="modal-body">
         <form id="form" name="form" class="form-horizontal" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
 
+
+
         	<div class="form-group">
         		<input type="text" name="asunto" placeholder="Escribe el asunto">
         	</div>
         	<div class="form-group">
-        		<textarea placeholder="Escribe tu opinon"></textarea>
+        		<textarea placeholder="Escribe tu opinon" name="opinion"></textarea>
         	</div>
         	<div class="form-group">
-        		<button id="regBtn" name="regBtn" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Enviar opinon</button>
+        		<button id="opBtn" name="opBtn" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Enviar opinon</button>
         	</div>
         	<div class="form-group"></div>
 
