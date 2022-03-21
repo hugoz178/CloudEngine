@@ -19,8 +19,9 @@ if (isset($_POST['registrar']))
 	$desS=$_REQUEST["descripcionSoft"];
 	$cosS=$_REQUEST["costoSoft"];
 	$catS=$_REQUEST["categoriaSoft"];
+	$foto = addslashes(file_get_contents($_FILES['foto']['tmp_name']));
 
-	$insertar=("INSERT into software (idSoft,nombreSoft, descripcionSoft,costoSoft, categoriaSoft,username) values('$cadena','$nomS','$desS','$cosS','$catS','$camp')");
+	$insertar=("INSERT into software (idSoft,nombreSoft, fotoSoft, descripcionSoft,costoSoft, categoriaSoft,username) values('$cadena','$nomS', '$foto','$desS','$cosS','$catS','$camp')");
 	$resultado=mysqli_query($cnx,$insertar);
 
 	if (!$resultado) {
@@ -122,7 +123,7 @@ if (isset($_POST['actualizar']))
 
 			<div class="row">
 				<div class="col-md-4">
-					<form class="login" method="post">
+					<form class="login" method="post" enctype="multipart/form-data">
 						<h1 class="login-title"><span class="glyphicon glyphicon-tasks"></span> Softwares</h1>
 
 						<div class="input-group">
@@ -139,7 +140,7 @@ if (isset($_POST['actualizar']))
 
 						<div class="input-group">
 							<span class="input-group-addon"></span>
-							<input class="btn form-control input-lg" style="background-color: #2D2D2D; color:white;" type="file" name="fotoSoft" id="fotoSoft">
+							<input class="btn form-control input-lg" style="background-color: #2D2D2D; color:white;" type="file" name="foto" id="foto">
 						</div><br>
 
 						<div class="input-group">
@@ -187,7 +188,7 @@ if (isset($_POST['actualizar']))
 													<div class="card card-cascade narrower" style="background-color:#050503;" >
 												  <div class="view view-cascade overlay"">
 												  <center>
-												  <img src="https://laverdadnoticias.com/__export/1598298460906/sites/laverdad/img/2020/08/24/zoro_one_piece_anime.jpg_423682103.jpg" class="card-img-top" alt="photo" style="width:300px; height:300px;">
+												  <img src="data:image/png;base64,'.base64_encode($row['fotoSoft']). '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
 												    </center>
 												    <a>
 												      <div class="mask rgba-white-slight"></div>
