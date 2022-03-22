@@ -3,6 +3,7 @@ ob_start() ;
 session_start();
 $camp = $_SESSION['username']; 
 if ($camp == null || $camp = '' || $camp != 'hugoz178'){
+ 	session_destroy();
  	header("location:index.php");
  	die();
  }
@@ -15,6 +16,7 @@ $cadena = substr(str_shuffle($permitted_chars), 1, 10);
 
 if (isset($_POST['registrar'])) 
 {
+	$camp = $_SESSION['username'];
 	$nomS=$_REQUEST["nombreSoft"];
 	$desS=$_REQUEST["descripcionSoft"];
 	$cosS=$_REQUEST["costoSoft"];
@@ -109,7 +111,7 @@ if (isset($_POST['actualizar']))
 				  <div class="offcanvas-body">
 				  	<div class="btn-group-vertical" style="width:280px">
 						<a href="vista_admin.php" class="btn"><h2 style="color:#5D00B9">Inicio</h2></a><br>
-            <br>
+            			<a href="configuracion.php" class="btn"><h2 style="color:#5D00B9">Configuración</h2></a><br>
 						<a href="logout.php" class="btn"><h2 style="color:#5D00B9">Cerrar sesión</h2></a>
 				  	</div>
 				  </div>
@@ -195,7 +197,8 @@ if (isset($_POST['actualizar']))
 												    </a>
 												  </div>
 												  <div class="card-body card-body-cascade">
-												    <h5 class="text-white pb-2 pt-1"><i class="fas fa-shopping-bag"></i>  '.$row['categoriaSoft'].'</h5>
+												    <h5 class="text-white pb-2 pt-1"><i class="fas fa-shopping-bag"></i>  '.$row['categoriaSoft']. ' Id:'.$row['idSoft'].'</h5>
+												    <p><small>Id: '.$row['idSoft'].'</small></p>
 												    <h4 class="font-weight-bold card-title text-white">'.$row['nombreSoft'].'</h4>
 												    <p class="card-text text-white">'.$row['descripcionSoft'].'</p>
 												    <a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id='.$row['idSoft'].'">Obervar Software</a>

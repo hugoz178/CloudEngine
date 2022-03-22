@@ -2,7 +2,13 @@
 ob_start() ;
 session_start();
 require_once 'php/conexion.php';
+/*$camp = $_SESSION['username'];
 
+if ($camp == 'hugoz178') {
+	header("location:vista_admin.php");
+}else{
+	header("location:vista_usuario.php");
+}*/
 
 # Se verifica si se presiona el botón llamado iniciar-sesion
 if (isset($_POST['iniciar-session']))

@@ -4,6 +4,11 @@ session_start();
 $camp = $_SESSION['username']; 
 require_once 'php/conexion.php';
 
+if ($camp == null || $camp = ''){
+  header("location:index.php");
+  die();
+ }
+
 date_default_timezone_set("America/Mexico_City");
 $time= date("h:i a");
 $date= date("d-M-Y");
@@ -17,7 +22,7 @@ $date= date("d-M-Y");
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-  <title></title>
+  <title>Inf Software</title>
 </head>
 <body style="overflow-x:hidden; background-color:#000000;">
   
@@ -56,8 +61,7 @@ $date= date("d-M-Y");
             <div class="btn-group-vertical" style="width:280px">
             <a href="vista_admin.php" class="btn"><h2 style="color:#5D00B9">Inicio</h2></a>
             <a href="softwares.php" class="btn"><h2 style="color:#5D00B9">Añadir softwares</h2></a><br>
-            <br>
-            <a href="logout.php" class="btn"><h2 style="color:#5D00B9">Cerrar sesión</h2></a>
+            <a href="configuracion.php" class="btn"><h2 style="color:#5D00B9">Configuración</h2></a><br>       <a href="logout.php" class="btn"><h2 style="color:#5D00B9">Cerrar sesión</h2></a>
             </div>
           </div>
         </div>
@@ -92,6 +96,7 @@ $date= date("d-M-Y");
             <div class="btn-group-vertical" style="width:280px">
             <a href="vista_usuario.php" class="btn"><h2 style="color:#5D00B9">Inicio</h2></a><br>
             <a href="" class="btn"><h2 style="color:#5D00B9">Mi carrito</h2></a><br>
+            <a href="configuracion.php" class="btn"><h2 style="color:#5D00B9">Configuración</h2></a><br>
             <a href="logout.php" class="btn"><h2 style="color:#5D00B9">Cerrar sesión</h2></a>
             </div>
           </div>

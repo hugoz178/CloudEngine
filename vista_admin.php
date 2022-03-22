@@ -3,6 +3,13 @@ ob_start() ;
 session_start();
 $campo = $_SESSION['username']; 
 require_once 'php/conexion.php';
+
+if ($campo == null || $campo = '' || $campo != 'hugoz178'){
+ 	session_destroy();
+ 	header("location:index.php");
+ 	die();
+ }
+
 ?>
 
 <!doctype html>
@@ -46,7 +53,7 @@ require_once 'php/conexion.php';
 				  <div class="offcanvas-body">
 				  	<div class="btn-group-vertical" style="width:280px">
 						<a href="softwares.php" class="btn"><h2 style="color:#5D00B9">Añadir softwares</h2></a><br>
-            <br>
+						<a href="configuracion.php" class="btn"><h2 style="color:#5D00B9">Configuración</h2></a><br>
 						<a href="logout.php" class="btn"><h2 style="color:#5D00B9">Cerrar sesión</h2></a>
 				  	</div>
 				  </div>

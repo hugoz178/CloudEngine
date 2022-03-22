@@ -5,6 +5,10 @@ include 'php/conexion.php';
 $camp = $_SESSION['username'];
 include 'boot.php';
 
+if ($camp == null || $camp = ''){
+  header("location:index.php");
+  die();
+}
 
 if (isset($_POST['subirfoto'])) 
 {
@@ -111,31 +115,23 @@ if (isset($_POST['subirfoto']))
 
 		echo $camp;
 
-		$sql = $cnx->query("SELECT fotousuario FROM fotousuarios");
-		if ($sql == null){
-			?>
-			<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
-			<img src="images/fotousuario.png"><br>
-			<p>Sube tu imagen: </p>
-			<input type="file" name="foto">
-			<input type="submit" name="subirfoto">
-			</form>
-			<?php
-		}else{
+		$sql = $cnx->query("SELECT fotousuario FROM fotousuarios WHERE username='$camp'");
+		if (!empty($sql)){
 			if ($row=mysqli_fetch_array($sql)) {
 				?>
-					<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
+			<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
 					<?php echo '<img src="data:image/png;base64,'.base64_encode($row['fotousuario']). '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
 													</center>'; ?>
-					<p>Actualizar imagen: </p>
-					<input type="file" name="foto">
-					<input type="submit" name="subirfoto">
-					</form>
+				<p>Actualizar imagen: </p>
+				<input type="file" name="foto">
+				<input type="submit" name="subirfoto">
+			</form>
 			<?php
 			}
-			
 		}
 	?>
+
+		<a href="eliminarcuenta.php">Elimina tu cuenta</a>
 
 </body>
 </html>

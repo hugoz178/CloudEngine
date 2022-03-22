@@ -3,6 +3,13 @@ ob_start() ;
 session_start();
 include("php/conexion.php");
 $camp = $_SESSION['username']; 
+
+if ($camp == null || $camp = '' || $camp == 'hugoz178'){
+ 	session_destroy();
+ 	header("location:index.php");
+ 	die();
+}
+
 	
 if (isset($_POST['opBtn'])) 
 {
@@ -16,11 +23,35 @@ if (isset($_POST['opBtn']))
 	$listo = mysqli_query($cnx,$registrar);
 
 	if ($listo) {
-		header("Location:vista_usuario.php?correcto=1");
+			echo "
+				  <div class='toast show' style='width:100%'>
+				    <div class='toast-header'>
+				      <strong class='me-auto'>Formulario enviado!!</strong>
+				      <button type='button' class='btn-close' data-bs-dismiss='toast'></button>
+				    </div>
+				    <div class='toast-body'>
+				      <p>Gracias por contactar con nosotros. Tu opinión nos interesa.</p>
+				      <p><small>Puedes cerrar esta pestaña</small></p>
+				    </div>
+				  </div>
+				  ";
+
 	}else{
-		echo 'error';
+			echo "
+				  <div class='toast show' style='width:100%'>
+				    <div class='toast-header'>
+				      <strong class='me-auto'>Error al enviar</strong>
+				      <button type='button' class='btn-close' data-bs-dismiss='toast'></button>
+				    </div>
+				    <div class='toast-body'>
+				      <p>Upss! Parece que hubo un error al enviar el formulario. Intentalo mas tarde</p>
+				      <p><small>Puedes cerrar esta pestaña</small></p>
+				    </div>
+				  </div>
+				  ";
 	}
 }
+
 ?>
 
 <!doctype html>
@@ -77,7 +108,10 @@ if (isset($_POST['opBtn']))
         echo "<center><div class='alert alert-danger'>Ya tienes datos guardados.</div></center><br>";
       }
       if (isset($_GET['correcto'])) {
-        echo "<center><div class='alert alert-success'><p>Corectoo</p></div></center><br>";
+        echo "
+
+
+        ";
       }
     	?>
 					<div class="col-md-2"> </div>
