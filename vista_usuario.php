@@ -64,6 +64,7 @@ if (isset($_POST['opBtn']))
 						<a href="misjuegos.php" class="btn"><h2 style="color:#5D00B9">Mis juegos</h2></a><br>
 						<a href="" class="btn"><h2 style="color:#5D00B9">Mi carrito</h2></a><br>
 						<a type="button" class="btn"><h2 style="color:#5D00B9" data-bs-toggle="modal" data-bs-target="#myModal">Contactanos</h2></a><br>
+						<a href="configuracion.php" class="btn"><h2 style="color:#5D00B9">Configuración</h2></a><br>
 						<a href="logout.php" class="btn"><h2 style="color:#5D00B9">Cerrar sesión</h2></a>
 					</div>
 				  </div>

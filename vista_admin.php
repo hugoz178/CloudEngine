@@ -55,18 +55,23 @@ require_once 'php/conexion.php';
 
 
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<div class="card" style="background-color: #050503; border: 1px solid white;">
+					<div class="card-tittle">
+						<h3 class="text-white">Comentarios recientes: </h3>
+					 </div>
 					<div class="card-body">
-						<div class="container-fluid" id="Layer1" style="width:100%; height:480px; overflow: auto;">
+						<div class="container-fluid" id="Layer1" style="width:100%; height:480px; overflow: auto; overflow-x: hidden;">
 							<?php
-							$consCS=$cnx->query("SELECT * FROM comentarios");
+							$consCS=$cnx->query("SELECT * FROM comentarios ORDER BY idCom desc");
 							while ($verCS=mysqli_fetch_array($consCS)) {
 								?>
+								<div style="border: 1px solid #5D00B9">
 								<img src="https://i.pinimg.com/originals/bb/3d/43/bb3d43fa506c564d150130d91ed4b21b.jpg"  class="mr-3 mt-3" style="width:10%;">
 								<h4 class="text-white"><?php echo $verCS['username'] ?></h4>
 								<p class="text-white"><small><?php echo $verCS['fechaCom'] ?></small></p>
 								<p class="text-white"><?php echo $verCS['comSoft'] ?><p> 
+								</div>	
 									<?php
 								}
 								?>		
@@ -75,7 +80,7 @@ require_once 'php/conexion.php';
 					</div>
 				</div>
 			</div>
-				<div class="col-md-8">
+				<div class="col-md-6">
 					<div class="container-fluid" id="Layer2" style="width:100%; height:512px; overflow: auto; border: 1px solid #5D00B9">
 								<center>
 									<table>
@@ -120,6 +125,28 @@ require_once 'php/conexion.php';
 									</table>
 								</center>
 					</div>
+				</div>
+				<div class="col-md-3">
+				<div class="card" style="background-color: #050503; border: 1px solid white;">
+					<div class="card-body">
+						<div class="container-fluid" id="Layer1" style="width:100%; height:480px; overflow: auto; overflow-x: hidden;">
+							<?php
+							$consOP=$cnx->query("SELECT * FROM opiniones");
+							while ($verOP=mysqli_fetch_array($consOP)) {
+								?>
+								<div style="border: 1px solid #5D00B9">
+								<img src="https://i.pinimg.com/originals/bb/3d/43/bb3d43fa506c564d150130d91ed4b21b.jpg"  class="mr-3 mt-3" style="width:10%;">
+								<h4 class="text-white">Usuario: <?php echo $verOP['username'] ?></h4>
+								<p class="text-white"><small> El asunto es: <?php echo $verOP['asunto'] ?></small></p>
+								<p class="text-white">Esta es su opinión: <?php echo $verOP['opinion'] ?><p> 
+								</div>	
+									<?php
+								}
+								?>		
+
+						</div>
+					</div>
+				</div>
 				</div>
 
 		</div>

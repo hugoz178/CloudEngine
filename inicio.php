@@ -28,8 +28,13 @@ if (isset($_POST['regBtn']))
 
   $registrar = "INSERT INTO usuarios (username,email,celular,password)
   VALUES ('$user','$mail','$cel','$encriptsha');";
+
+  $registarfoto = "INSERT INTO fotousuarios (username,fotousuario) VALUES ('$user','');";
+
   #$cor =mail($mail,"Registro con exito. Bienvenido a Electroniknet!",$message,$cabeceras);
   $listo = mysqli_query($cnx,$registrar);
+  $listo2 = mysqli_query($cnx,$registarfoto);
+
 
   if ($listo) {
     header("Location:index.php");
