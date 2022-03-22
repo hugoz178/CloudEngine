@@ -1,11 +1,11 @@
 <?php
-session_start();
 ob_start();
+session_start();
 include 'php/conexion.php';
-$camp = $_SESSION['username'];
 include 'boot.php';
+$camp = $_SESSION['username'];
 
-if ($camp == null || $camp = ''){
+if ($camp == null || $camp == ''){
   header("location:index.php");
   die();
 }
@@ -42,7 +42,7 @@ if (isset($_POST['subirfoto']))
       if ($cons){
         if ($_SESSION['username']=='hugoz178'){
           $consA=$cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
-            if ($verA=mysqli_fetch_array($consA)){
+            if ($consA){
               ?>
     <nav class="navbar navbar-inverse" style="background-color:black;">
       <div class="container-fluid ">
@@ -60,7 +60,7 @@ if (isset($_POST['subirfoto']))
 
         <div class="offcanvas offcanvas-start" id="demo" style="background-color:#050503">
           <div class="offcanvas-header">
-            <center><h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $camp ?></h2></center>
+            <center><h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $_SESSION['username'] ?></h2></center>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
           </div>
           <div class="offcanvas-body">
@@ -96,7 +96,7 @@ if (isset($_POST['subirfoto']))
 
         <div class="offcanvas offcanvas-start" id="demo" style="background-color:#050503">
           <div class="offcanvas-header">
-            <center><h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $camp ?></h2></center>
+            <center><h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $_SESSION['username'] ?></h2></center>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
           </div>
           <div class="offcanvas-body">
@@ -113,10 +113,9 @@ if (isset($_POST['subirfoto']))
       }
 
 
-		echo $camp;
+		
 
 		$sql = $cnx->query("SELECT fotousuario FROM fotousuarios WHERE username='$camp'");
-		if (!empty($sql)){
 			if ($row=mysqli_fetch_array($sql)) {
 				?>
 			<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
@@ -128,10 +127,49 @@ if (isset($_POST['subirfoto']))
 			</form>
 			<?php
 			}
-		}
+		
+      echo $camp;
 	?>
 
-		<a href="eliminarcuenta.php">Elimina tu cuenta</a>
+     <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+      Open modal
+    </button>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">No te vayas!!</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form id="form" action="eliminarcuenta.php">
+              <div>
+                <p>Estás a punto de eliminar tu cuenta.</p>
+                <p>Si deseas continuar presiona el boton de Eliminar</p>
+              </div>
+              <div>
+                <input type="submit" name="borrar" value="Eliminar">
+              </div>
+            </form>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div> 
+
 
 </body>
 </html>
+

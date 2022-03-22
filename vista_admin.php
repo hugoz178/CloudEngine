@@ -4,7 +4,7 @@ session_start();
 $campo = $_SESSION['username']; 
 require_once 'php/conexion.php';
 
-if ($campo == null || $campo = '' || $campo != 'hugoz178'){
+if ($campo == null || $campo == '' || $campo !== 'hugoz178'){
  	session_destroy();
  	header("location:index.php");
  	die();

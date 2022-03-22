@@ -4,7 +4,7 @@ session_start();
 include("php/conexion.php");
 $camp = $_SESSION['username']; 
 
-if ($camp == null || $camp = '' || $camp == 'hugoz178'){
+if ($camp == null || $camp == '' || $camp == 'hugoz178'){
  	session_destroy();
  	header("location:index.php");
  	die();
@@ -87,7 +87,7 @@ if (isset($_POST['opBtn']))
 
 				<div class="offcanvas offcanvas-start" id="demo" style="background-color:#050503">
 				  <div class="offcanvas-header">
-					<center><h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $camp ?></h2></center>
+					<center><h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $_SESSION['username'] ?></h2></center>
 					<button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
 				  </div>
 				  <div class="offcanvas-body">
@@ -103,17 +103,6 @@ if (isset($_POST['opBtn']))
 
 
 				<div class="row">
-					       <?php
-      if (isset($_GET['error'])) {
-        echo "<center><div class='alert alert-danger'>Ya tienes datos guardados.</div></center><br>";
-      }
-      if (isset($_GET['correcto'])) {
-        echo "
-
-
-        ";
-      }
-    	?>
 					<div class="col-md-2"> </div>
 					<div class="col-md-8">
 						<div class="card" style="height:900px; background-color:#000000;">

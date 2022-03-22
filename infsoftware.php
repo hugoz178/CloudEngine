@@ -4,7 +4,7 @@ session_start();
 $camp = $_SESSION['username']; 
 require_once 'php/conexion.php';
 
-if ($camp == null || $camp = ''){
+if ($camp == null || $camp == ''){
   header("location:index.php");
   die();
  }

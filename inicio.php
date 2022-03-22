@@ -3,6 +3,19 @@ ob_start() ;
 session_start();
 include("php/conexion.php");
 
+if(!isset($_SESSION['username']) || $_SESSION['username']==null){
+
+}
+else{
+    if($_SESSION['username'] == "hugoz178")
+    {
+      header('location:vista_admin.php');
+    }
+    else{
+      header('location:vista_usuario.php');
+    }
+}
+
 if (isset($_POST['regBtn'])) 
 {
 
