@@ -137,7 +137,7 @@ $date = date("d-M-Y");
               <?php
               $consultaA = $cnx->query("SELECT * FROM software WHERE idSoft='$id'");
               if ($ver = mysqli_fetch_array($consultaA)) {   ?>
-              <form action="car.php?idSof=<?php echo $ver['idSoft'] ?>" method="POST">
+              <form action="car.php?idS=<?php echo $ver['idSoft'] ?>" method="POST">
                 <h1 class="card-tittle display-6 text-white">
                   <?php echo $ver['nombreSoft'] ?>
                 </h1>
