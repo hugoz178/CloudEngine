@@ -1,6 +1,7 @@
 <?php
 ob_start();
 session_start();
+error_reporting(0);
 include 'php/conexion.php';
 include 'boot.php';
 $camp = $_SESSION['username'];
