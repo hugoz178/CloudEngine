@@ -25,7 +25,7 @@ $sql=("SELECT * from software where idSoft='$idS'");
         $resultado = mysqli_query($cnx,$carrito);
         
         if ($resultado) {
-            echo "<center><h1 clase='bg-dark'>Se agrego al carrito con exito</h1></center>";
+            header ("location: ver_carrito.php");
         }else{
             echo "<center><h1 clase='bg-dark'>No se agrego al carrito con exito</h1></center>";
         
