@@ -63,7 +63,7 @@ if($camp==$sus){
                 $elim2=("DELETE FROM carrito WHERE usuario='$camp'");
                 $res2=mysqli_query($cnx,$elim2);
 
-                if($re2){
+                if($res2){
 
                     header("location:ver_carrito.php?correcto=1");
 

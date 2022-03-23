@@ -119,6 +119,15 @@ if ($camp == null || $camp == '') {
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-1 col-md-12">
+            <?php
+      if (isset($_GET['error'])) {
+        echo "<center><div class='alert alert-danger'>Error al Comprar</div></center><br>";
+      }
+    
+      if (isset($_GET['correcto'])) {
+       echo "<center><div class='alert alert-success'>Compra con exito</div></center><br>";
+      }
+      ?>
             </div>
 
             <div class="col-lg-8 col-md-6">
