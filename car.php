@@ -11,7 +11,7 @@ $sql=("SELECT * from software where idSoft='$idS'");
         while($res=mysqli_fetch_array($result))
         {
         	$nombre=$res['nombreSoft'];
-        	$foto=$res['fotoSoft'];
+        	$foto= '<img src="data:image/png;base64,' . base64_encode($res['fotoSoft']) . '" class="card-img-top" alt="photo" style="width:300px; height:300px;">';
         	$descripcion=$res['descripcionSoft'];
         	$costo=$res['costoSoft'];
         	$categoria=$res['categoriaSoft'];
@@ -19,18 +19,14 @@ $sql=("SELECT * from software where idSoft='$idS'");
 
         }
 
-
-        echo $foto;
-
-
-        // $carrito="INSERT INTO carrito (idS, nombreSoft, fotoSoft, descripcionSoft, costoSoft, CategoriaSoft, usuario) 
-        // VALUES ('$id','$nombre','','$descripcion','$costo', '$categoria','$camp');";
+        $carrito="INSERT INTO carrito (idS, nombreSoft, fotoSoft, descripcionSoft, costoSoft, CategoriaSoft, usuario) 
+        VALUES ('$id','$nombre','$foto','$descripcion','$costo', '$categoria','$camp');";
         
-        // $resultado = mysqli_query($cnx,$carrito);
+        $resultado = mysqli_query($cnx,$carrito);
         
-        // if ($resultado) {
-        //     echo "<center><h1 clase='bg-dark'>Se agrego al carrito con exito</h1></center>";
-        // }else{
-        //     echo "<center><h1 clase='bg-dark'>No se agrego al carrito con exito</h1></center>";
+        if ($resultado) {
+            echo "<center><h1 clase='bg-dark'>Se agrego al carrito con exito</h1></center>";
+        }else{
+            echo "<center><h1 clase='bg-dark'>No se agrego al carrito con exito</h1></center>";
         
-        // }
+        }
