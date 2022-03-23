@@ -123,7 +123,6 @@ if (isset($_POST['iniciar-session']))
 			</div>
 		</body>
 		</html>
-		<!-- adios perra-->
 		<?php
 		ob_end_flush();
 		?>				
