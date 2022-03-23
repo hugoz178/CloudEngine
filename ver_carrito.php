@@ -21,7 +21,7 @@ if ($camp == null || $camp == '') {
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 
-<body>
+<body style="overflow-x: hidden;">
 
     <?php
     $cons = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
@@ -117,52 +117,87 @@ if ($camp == null || $camp == '') {
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-2 col-md-12">
+            <div class="col-lg-1 col-md-12">
             </div>
 
             <div class="col-lg-8 col-md-6">
                 <section>
                     <!--for demo wrap-->
                     <h1>Carrito de compras</h1>
-                        <div class="tbl-header">
-                            <table cellpadding="0" cellspacing="0" border="0">
-                                <thead>
-                                    <tr>
-                                        <th>Foto</th>
-                                        <th>Nombre</th>
-                                        <th>Descripcion</th>
-                                        <th>categoria</th>
-                                        <th>precio</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                        <?php
-                    $consultaA = $cnx->query("SELECT * FROM carrito WHERE usuario='$camp'");
-                    while ($ver = mysqli_fetch_array($consultaA)) {   ?>
-                        <div class="tbl-content">
-                            <table cellpadding="0" cellspacing="0" border="0">
-                                <tbody>
-                                    <tr>
-                                        <?php
-                                        echo'
-                                        <td><img src="data:image/png;base64,' . base64_encode($ves['fotoSoft']) . '" class="card-img-top" alt="photo" style="width:300px; height:300px;"></td>
-                                        <td>'.$ver['nombreSoft'].'</td>
-                                        <td>'.$ver['descripcionSoft'].'</td>
-                                        <td>'.$ver['categoriaSoft'].'</td>
-                                        <td>'.$ver['costoSoft'].'</td>
+                    <div class="tbl-header">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <thead>
+                                <tr>
+                                    <th>Foto</th>
+                                    <th>Nombre</th>
+                                    <th>Descripcion</th>
+                                    <th>categoria</th>
+                                    <th>precio</th>
+                                    <th>Borrar</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="tbl-content">
+                        <table cellpadding="0" cellspacing="0" border="0">
+                            <tbody>
+                                <?php
+                                $consultaA = $cnx->query("SELECT * FROM carrito WHERE usuario='$camp'");
+                                while ($ver = mysqli_fetch_array($consultaA)) {
+                                    echo '
+                                        <tr>
+                                        <td><img src="data:image/png;base64,' . base64_encode($ver['fotoSoft']) . '" class="card-img-top" style="width:50px; height:50px;"></td>
+                                        <td>' . $ver['nombreSoft'] . '</td>
+                                        <td>' . $ver['descripcionSoft'] . '</td>
+                                        <td>' . $ver['categoriaSoft'] . '</td>
+                                        <td>$' . $ver['costoSoft'] . '</td>
+                                        <td><a type="button" class="btn btn-danger" href="elicar.php?id=' . $ver['idS'] . '">X</a></td>
+                                        </tr>
                                         ';
-                                        ?>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    <?php } ?>
+                                } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
             </div>
 
-            <div class="col-lg-2 col-md-6">
+            <div class="col-lg-3 col-md-6">
+                <div style="width: 200px; height: 90px; position: absolute; top: 50%; background-color: rgba(255,255,255,0.3); text-align: center;">
+                <br>
+                    <?php
+                    $camp = $_SESSION['username'];
+                    $qu = "SELECT SUM(costoSoft) as co from carrito where usuario='$camp' ";
 
+                    if ($r = mysqli_query($cnx, $qu)) {
+
+                        $da = mysqli_fetch_assoc($r);
+                    }
+
+                    if ($da['co'] == 0) {
+                        echo '<b>$0</b>&nbsp;&nbsp;&nbsp;';
+                    } else {
+                        echo '<b>$' . $da['co'] . '</b>&nbsp;&nbsp;&nbsp;';
+                    }
+
+
+                    $sql = ("SELECT * FROM saldo where usuario='$camp'");
+                    $result = mysqli_query($cnx, $sql);
+                    while ($res = mysqli_fetch_array($result)) {
+                        $saldo = $res['saldo'];
+                    }
+
+                    if ($saldo == 0) {
+                        echo '<a class="btn btn-warning" href="saldo.php">Agregar saldo</a>';
+                    } else {
+                        if ($saldo < $da['co']) {
+                            echo '<a class="btn btn-warning" href="saldo.php">Agregar saldo</a>';
+                        } else {
+                            echo '<button type="submit" class="btn btn-success">Comprar</button>';
+                        }
+                    }
+
+                    ?>
+                </div>
             </div>
         </div>
     </div>
