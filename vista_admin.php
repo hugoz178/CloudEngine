@@ -135,6 +135,7 @@ if ($campo == null || $campo == '' || $campo !== 'hugoz178'){
 				</div>
 				<div class="col-md-3">
 				<div class="card" style="background-color: #050503; border: 1px solid white;">
+					<div class="card-tittle"><p class="text-white">Opiniones:</p> </div>
 					<div class="card-body">
 						<div class="container-fluid" id="Layer1" style="width:100%; height:480px; overflow: auto; overflow-x: hidden;">
 							<?php

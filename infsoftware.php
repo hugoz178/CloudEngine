@@ -38,6 +38,7 @@ $date= date("d-M-Y");
           $consA=$cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
             if ($verA=mysqli_fetch_array($consA)){
               ?>
+              <!-- NAV ADMIN -->
     <nav class="navbar navbar-inverse" style="background-color:black;">
       <div class="container-fluid ">
         <div class="navbar-header">
@@ -72,6 +73,7 @@ $date= date("d-M-Y");
               $consU=$cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
               if ($consU){
 ?>
+    <!-- NAV USUARIO -->
     <nav class="navbar navbar-inverse" style="background-color:#000000;">
       <div class="container-fluid ">
         <div class="navbar-header">

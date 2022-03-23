@@ -107,9 +107,6 @@ if (isset($_POST['opBtn']))
 					<div class="col-md-8">
 						<div class="card" style="height:900px; background-color:#000000;">
 							<div class="card-body">
-								
-								<center><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/XBOX_logo_2012.svg/1280px-XBOX_logo_2012.svg.png" style="width:300px"></center><br>
-																
 								<center>
 									<table>
 										<br>
