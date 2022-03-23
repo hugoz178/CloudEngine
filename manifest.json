@@ -1,0 +1,13 @@
+{
+  "name": "CloudEngine",
+  "short_name": "CloudEngine",
+  "description": "CloudEngine es una pagina de distribuicion de softwares en la nube",
+  "background_color": "#000000",
+  "theme_color": "#5D00B9",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "./index.html?utm_source=web_app_manifest",
+  "scope": "./",
+  "lang": "es-MX"
+
+}
