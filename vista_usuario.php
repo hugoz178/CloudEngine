@@ -2,6 +2,7 @@
 ob_start();
 session_start();
 include("php/conexion.php");
+include 'boot.php';
 $camp = $_SESSION['username'];
 
 if ($camp == null || $camp == '' || $camp == 'hugoz178') {
@@ -89,7 +90,7 @@ if (isset($_POST['opBtn'])) {
 			<center>
 				<h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $_SESSION['username'] ?></h2>
 			</center>
-			<button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" style='color:#5D00B9;'></button>
 		</div>
 		<div class="offcanvas-body">
 			<div class="btn-group-vertical" style="width:280px">
@@ -109,8 +110,6 @@ if (isset($_POST['opBtn'])) {
 					<h3 style="color:#5D00B9">Cerrar sesión</h3>
 				</a>
 				<?php
-				$mpdc = $_SESSION['s_correo'];
-
 				$sql = ("SELECT * FROM saldo where usuario='$camp'");
 				$result = mysqli_query($cnx, $sql);
 				while ($res = mysqli_fetch_array($result)) {
