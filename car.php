@@ -11,14 +11,14 @@ $sql=("SELECT * from software where idSoft='$idS'");
         while($res=mysqli_fetch_array($result))
         {
         	$nombre=$res['nombreSoft'];
-            $foto = addslashes(file_get_contents($_FILES['fotoSoft']['tmp_name']));
-        	
+        	$foto=$res['fotoSoft'];
         	$descripcion=$res['descripcionSoft'];
         	$costo=$res['costoSoft'];
         	$categoria=$res['categoriaSoft'];
             $id=$res['idSoft'];
 
         }
+
 
         echo $foto;
 
