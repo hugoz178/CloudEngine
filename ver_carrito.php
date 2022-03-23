@@ -164,40 +164,42 @@ if ($camp == null || $camp == '') {
 
             <div class="col-lg-3 col-md-6">
                 <div style="width: 200px; height: 90px; position: absolute; top: 50%; background-color: rgba(255,255,255,0.3); text-align: center;">
-                <br>
-                    <?php
-                    $camp = $_SESSION['username'];
-                    $qu = "SELECT SUM(costoSoft) as co from carrito where usuario='$camp' ";
+                    <br>
+                    <form method="POST" action="comprar.php">
+                        <?php
+                        $camp = $_SESSION['username'];
+                        $qu = "SELECT SUM(costoSoft) as co from carrito where usuario='$camp' ";
 
-                    if ($r = mysqli_query($cnx, $qu)) {
+                        if ($r = mysqli_query($cnx, $qu)) {
 
-                        $da = mysqli_fetch_assoc($r);
-                    }
+                            $da = mysqli_fetch_assoc($r);
+                        }
 
-                    if ($da['co'] == 0) {
-                        echo '<b>$0</b>&nbsp;&nbsp;&nbsp;';
-                    } else {
-                        echo '<b>$' . $da['co'] . '</b>&nbsp;&nbsp;&nbsp;';
-                    }
+                        if ($da['co'] == 0) {
+                            echo '<b>$0</b>&nbsp;&nbsp;&nbsp;';
+                        } else {
+                            echo '<b>$' . $da['co'] . '</b>&nbsp;&nbsp;&nbsp;';
+                        }
 
 
-                    $sql = ("SELECT * FROM saldo where usuario='$camp'");
-                    $result = mysqli_query($cnx, $sql);
-                    while ($res = mysqli_fetch_array($result)) {
-                        $saldo = $res['saldo'];
-                    }
+                        $sql = ("SELECT * FROM saldo where usuario='$camp'");
+                        $result = mysqli_query($cnx, $sql);
+                        while ($res = mysqli_fetch_array($result)) {
+                            $saldo = $res['saldo'];
+                        }
 
-                    if ($saldo == 0) {
-                        echo '<a class="btn btn-warning" href="saldo.php">Agregar saldo</a>';
-                    } else {
-                        if ($saldo < $da['co']) {
+                        if ($saldo == 0) {
                             echo '<a class="btn btn-warning" href="saldo.php">Agregar saldo</a>';
                         } else {
-                            echo '<button type="submit" class="btn btn-success">Comprar</button>';
+                            if ($saldo < $da['co']) {
+                                echo '<a class="btn btn-warning" href="saldo.php">Agregar saldo</a>';
+                            } else {
+                                echo '<button type="submit" class="btn btn-success">Comprar</button>';
+                            }
                         }
-                    }
 
-                    ?>
+                        ?>
+                    </form>
                 </div>
             </div>
         </div>
