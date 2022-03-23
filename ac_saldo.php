@@ -147,7 +147,7 @@ if ($camp == null || $camp == '') {
       <div class="input-group-append">
         <span class="input-group-text">$</span>
       </div>
-      <input type="text" name="saldo"  required class="form-control">
+      <input type="text" name="saldo" min="1" required class="form-control">
     </div>
     </center>
 

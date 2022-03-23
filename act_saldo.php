@@ -13,20 +13,28 @@ $saldo=$_POST['saldo'];
           $sus=$res['usuario'];
         }
 
-if($camp==$sus){
-	$tol=$saldo+$saldo1;
-	$actualiza="UPDATE saldo SET saldo = '$tol' WHERE usuario = '$camp';";
-    $resul= mysqli_query($cnx,$actualiza);
+        if($saldo>0){
+            
+            if($camp==$sus){
+                $tol=$saldo+$saldo1;
+                $actualiza="UPDATE saldo SET saldo = '$tol' WHERE usuario = '$camp';";
+                $resul= mysqli_query($cnx,$actualiza);
+            
+                if ($resul) {
+            
+                     header("Location:saldo.php?correcto=2");
+                    
+                }
+                else{
+                    header("Location:ac_saldo.php?error=1");
+                }
+                }else{
+                    header("Location:ac_saldo.php?error=1");
+                }
 
-    if ($resul) {
+        }else{
+            header("Location:ac_saldo.php?error=1");
+        }
 
-         header("Location:saldo.php?correcto=2");
-        
-	}
-	else{
-	    header("Location:ac_saldo.php?error=1");
-	}
-	}else{
-		header("Location:ac_saldo.php?error=1");
-	}
+
 ?>
