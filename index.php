@@ -2,6 +2,7 @@
 ob_start() ;
 session_start();
 include("php/conexion.php");
+include 'loader.html';
 
 if(!isset($_SESSION['username']) || $_SESSION['username']==null){
 

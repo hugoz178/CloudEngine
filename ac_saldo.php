@@ -3,6 +3,7 @@ ob_start();
 session_start();
 include 'php/conexion.php';
 include 'boot.php';
+include 'loader.html';
 $camp = $_SESSION['username'];
 
 if ($camp == null || $camp == '') {
@@ -16,6 +17,7 @@ if ($camp == null || $camp == '') {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include 'loader.html'; ?>
     <title>Cloud Engine</title>
 </head>
 <body style="background: -webkit-linear-gradient(left, #5D00B9, #aa63f1); background: linear-gradient(to right, #5D00B9, #aa63f1); overflow-x: hidden;">

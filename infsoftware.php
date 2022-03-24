@@ -3,6 +3,7 @@ ob_start();
 session_start();
 $camp = $_SESSION['username'];
 require_once 'php/conexion.php';
+include 'loader.html';
 
 if ($camp == null || $camp == '') {
   header("location:index.php");

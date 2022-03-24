@@ -4,6 +4,7 @@ session_start();
 error_reporting(0);
 include 'php/conexion.php';
 include 'boot.php';
+include 'loader.html';
 $camp = $_SESSION['username'];
 
 if ($camp == null || $camp == '') {

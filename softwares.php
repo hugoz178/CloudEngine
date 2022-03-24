@@ -10,6 +10,7 @@ if ($camp == null || $camp == '' || $camp !== 'hugoz178'){
 
 require_once 'php/conexion.php';
 include 'boot.php';
+include 'loader.html';
 $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&';
 $cadena = substr(str_shuffle($permitted_chars), 1, 10);
 
@@ -85,8 +86,7 @@ if (isset($_POST['actualizar']))
 	<link rel="stylesheet" href="css/style.css">
 	<title>Cloud Engine</title>
 </head>
-<body style="background-color:#000000" class="hidden">
-	<?php include('loader.html'); ?>
+<body style="background-color:#000000;" class="hidden">
 		<nav class="navbar navbar-inverse" style="background-color:black;">
 			<div class="container-fluid ">
 				<div class="navbar-header">

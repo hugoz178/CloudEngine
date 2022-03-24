@@ -3,6 +3,7 @@ ob_start() ;
 session_start();
 $campo = $_SESSION['username']; 
 require_once 'php/conexion.php';
+include 'boot.php';
 
 if ($campo == null || $campo == '' || $campo !== 'hugoz178'){
  	session_destroy();
@@ -21,15 +22,12 @@ if ($campo == null || $campo == '' || $campo !== 'hugoz178'){
 		<!-- icono de la pagina -->
 		<link rel="icon" href="images/icons/agenda.png">
 
-		<!-- Mis CSS -->
-		<link rel="stylesheet" href="css/style.css">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-		<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+		
 
 	</head>
 
-	<body style="overflow-x:hidden; background-color:#000000;">
+	<body style="overflow-x:hidden;overflow-y: hidden; background-color:#000000;">
+		<?php include 'loader.html'; ?>
 
 		<nav class="navbar navbar-inverse" style="background-color:black;">
 			<div class="container-fluid ">

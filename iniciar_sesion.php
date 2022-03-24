@@ -3,6 +3,7 @@ ob_start() ;
 session_start();
 require_once 'php/conexion.php';
 include 'boot.php';
+include 'loader.html';
 
 
 if(!isset($_SESSION['username']) || $_SESSION['username']==null){
@@ -73,14 +74,11 @@ if (isset($_POST['iniciar-session']))
 
 	<!-- icono de la pagina -->
 	<link rel="icon" href="images/icons/agenda.png">
-	<link rel="stylesheet" href="https://bootswatch.com/5/yeti/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/style.css">
-	<script src="js/bootstrap.min.js" ></script>
+
 
 </head>
 
 <body class="hidden">
-	<?php include 'loader.html'; ?>
 		<div class="container">    
 			<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
 				<div class="panel panel-info" >  
