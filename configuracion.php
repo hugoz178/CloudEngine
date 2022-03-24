@@ -14,13 +14,16 @@ if ($camp == null || $camp == ''){
 if (isset($_POST['subirfoto'])) 
 {
 	$foto = addslashes(file_get_contents($_FILES['foto']['tmp_name']));
+  $us = $_POST['usuario'];
+  $co = $_POST['correo'];
+  $ce = $_POST['celular'];
+  $ps = $_POST['contrasena'];
+	$actualiza="UPDATE usuarios SET foto = '$foto', username = '$us', email = '$co', celular = '$ce', password = '$ps' WHERE username = '$us';";
 
-	$actualiza="UPDATE fotousuarios SET fotousuario = '$foto', username = '$camp' WHERE username = '$camp';";
 	$resultado=mysqli_query($cnx,$actualiza);
 
 	if ($resultado) {
  		header("Location:configuracion.php");
-
 	}else{
 		echo "error";
 	}
@@ -49,7 +52,7 @@ if (isset($_POST['subirfoto']))
       <div class="container-fluid ">
         <div class="navbar-header">
             <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-              <i class='fas fa-bars' style='font-size:36px; color:#5D00B9;'></i>
+              <i class="material-icons" style="font-size:48px;color:#5D00B9">dehaze</i>
             </button>
         </div>
         <ul class="nav navbar-nav">
@@ -116,12 +119,18 @@ if (isset($_POST['subirfoto']))
 
 		
 
-		$sql = $cnx->query("SELECT fotousuario FROM fotousuarios WHERE username='$camp'");
-			if ($row=mysqli_fetch_array($sql)) {
+		$sql = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
+			while ($row=mysqli_fetch_array($sql)) {
 				?>
 			<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
-					<?php echo '<img src="data:image/png;base64,'.base64_encode($row['fotousuario']). '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
-													</center>'; ?>
+					<?php echo '
+          <img src="data:image/png;base64,'.base64_encode($row['foto']). '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
+          <input type="hidden" value="'.$row['username'].'" name="usuario">
+          <input type="hidden" value="'.$row['email'].'" name="correo">
+          <input type="hidden" value="'.$row['celular'].'" name="celular">
+          <input type="hidden" value="'.$row['password'].'" name="contrasena">
+
+          '; ?>
 				<p>Actualizar imagen: </p>
 				<input type="file" name="foto">
 				<input type="submit" name="subirfoto">

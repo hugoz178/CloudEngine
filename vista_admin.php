@@ -17,9 +17,8 @@ if ($campo == null || $campo == '' || $campo !== 'hugoz178'){
 	<html>
 	<head>
 		<meta charset="utf-8">
-		<title>Agenda</title>
+		<title>Cloud Engine</title>
 
-		<!-- icono de la pagina -->
 		<link rel="icon" href="images/icons/agenda.png">
 
 		
@@ -33,7 +32,7 @@ if ($campo == null || $campo == '' || $campo !== 'hugoz178'){
 			<div class="container-fluid ">
 				<div class="navbar-header">
 					  <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-					    <i class='fas fa-bars' style='font-size:36px; color:#5D00B9;'></i>
+					    <i class="material-icons" style="font-size:48px;color:#5D00B9">dehaze</i>
 					  </button>
 				</div>
 				<ul class="nav navbar-nav">

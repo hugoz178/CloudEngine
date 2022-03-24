@@ -59,7 +59,7 @@ if (isset($_POST['opBtn'])) {
 
 <head>
 	<meta charset="utf-8">
-	<title>Agenda</title>
+	<title>Cloud Engine</title>
 	<!-- icono de la pagina -->
 	<link rel="icon" href="images/icons/agenda.png">
 	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
@@ -73,7 +73,7 @@ if (isset($_POST['opBtn'])) {
 			<div class="navbar-header">
 				<div class="container-fluid mt-3">
 					<button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-						<i class='fas fa-bars' style='font-size:36px; color:#5D00B9;'></i>
+						<i class="material-icons" style="font-size:48px;color:#5D00B9">dehaze</i>
 					</button>
 				</div>
 			</div>

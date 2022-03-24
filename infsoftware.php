@@ -46,7 +46,7 @@ $date = date("d-M-Y");
               <div class="container-fluid ">
                 <div class="navbar-header">
                   <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-                    <i class='fas fa-bars' style='font-size:36px; color:#5D00B9;'></i>
+                    <i class="material-icons" style="font-size:48px;color:#5D00B9">dehaze</i>
                   </button>
                 </div>
                 <ul class="nav navbar-nav">
