@@ -9,6 +9,7 @@ if ($camp == null || $camp == '' || $camp !== 'hugoz178'){
  }
 
 require_once 'php/conexion.php';
+include 'boot.php';
 $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&';
 $cadena = substr(str_shuffle($permitted_chars), 1, 10);
 
@@ -81,14 +82,11 @@ if (isset($_POST['actualizar']))
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="css/style.css">
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<title></title>
+	<link rel="stylesheet" href="css/style.css">
+	<title>Cloud Engine</title>
 </head>
-<body style="background-color:#000000">
+<body style="background-color:#000000" class="hidden">
+	<?php include('loader.html'); ?>
 		<nav class="navbar navbar-inverse" style="background-color:black;">
 			<div class="container-fluid ">
 				<div class="navbar-header">

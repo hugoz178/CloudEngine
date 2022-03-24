@@ -61,9 +61,6 @@ if (isset($_POST['opBtn'])) {
 	<title>Agenda</title>
 	<!-- icono de la pagina -->
 	<link rel="icon" href="images/icons/agenda.png">
-	<link rel="stylesheet" href="css/style.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
 
@@ -145,44 +142,43 @@ if (isset($_POST['opBtn'])) {
 					<center>
 						<table>
 							<br>
-							<tr>
-								<?php
-								$con = 0;
-								$sql = $cnx->query("SELECT * FROM software");
-								while ($row = mysqli_fetch_array($sql)) {
+								<tr>
+									<?php
+										$con=0;
+										$sql3 = $cnx->query("SELECT * FROM software");
+										while ($row=mysqli_fetch_array($sql3)) {
 
-								?>
-									<td>
-										<?php echo '
-														<div class="card card-cascade narrower" style="background-color:#050503;" >
+										?>
+											<td>
+												<?php echo '
+													<div class="card card-cascade narrower" style="background-color:#050503;" >
 												  <div class="view view-cascade overlay"">
 												  <center>
-												  <img src="data:image/png;base64,' . base64_encode($row['fotoSoft']) . '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
-													</center>
-													<a>
-													  <div class="mask rgba-white-slight"></div>
-													</a>
+												  <img src="data:image/png;base64,'.base64_encode($row['fotoSoft']). '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
+												    </center>
+												    <a>
+												      <div class="mask rgba-white-slight"></div>
+												    </a>
 												  </div>
 												  <div class="card-body card-body-cascade">
-													<h5 class="text-white pb-2 pt-1"><i class="fas fa-shopping-bag"></i>  ' . $row['categoriaSoft'] . '</h5>
-													<h4 class="font-weight-bold card-title text-white">' . $row['nombreSoft'] . '</h4>
-													<p class="card-text text-white">' . $row['descripcionSoft'] . '</p>
-													<a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id=' . $row['idSoft'] . '">Obervar Software</a>
+												    <h5 class="text-white pb-2 pt-1"><i class="fas fa-shopping-bag"></i>  '.$row['categoriaSoft'].'</h5>
+												    <h4 class="font-weight-bold card-title text-white">'.$row['nombreSoft'].'</h4>
+												    <p class="card-text text-white">'.$row['descripcionSoft'].'</p>
+												    <a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id='.$row['idSoft'].'">Obervar Software</a>
 												  </div>
-												</div>
-												';
-										?>
-									</td>
-								<?php
-									$con = $con + 1;
-									if ($con == 2) {
-										echo "</tr>
+												</div>';
+													?>
+											</td>
+												<?php
+												$con=$con+1;
+												if($con==2){
+													echo "</tr>
 													<tr>";
-										$con = 0;
-									}
-								}
-								?>
-							</tr>
+													$con=0;
+												}
+											}
+									?>  
+								</tr>
 						</table>
 					</center>
 

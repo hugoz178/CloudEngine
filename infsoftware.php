@@ -23,7 +23,7 @@ $date = date("d-M-Y");
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-  <title>Inf Software</title>
+  <title>Cloud Engine</title>
 </head>
 
 <body style="overflow-x:hidden; background-color:#000000;">

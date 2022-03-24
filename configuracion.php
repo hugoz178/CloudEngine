@@ -33,7 +33,7 @@ if (isset($_POST['subirfoto']))
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	<title>Cloud Engine</title>
 </head>
 <body>
 

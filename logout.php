@@ -2,5 +2,5 @@
 	session_start();
 	//con este se destruye la sesión 
 	session_destroy();
-	header("location:inicio.php");
+	header("location:index.php");
 ?>

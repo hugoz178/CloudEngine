@@ -18,10 +18,8 @@
 
 	if ($completo) {
 		session_destroy();
-		header("location:inicio.php");
+		header("location:index.php");
 	}else{
 		echo 'error';
 	}
 
-	session_destroy();
-	header("location:index.php");

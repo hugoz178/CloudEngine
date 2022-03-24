@@ -41,7 +41,7 @@ if (isset($_POST['regBtn']))
 ?>
 <html>
 <head>
-	<title>Agenda</title>
+	<title>Cloud Engine</title>
 
 	<!-- icono de la pagina -->
 	<link rel="icon" href="images/icons/agenda.png">
