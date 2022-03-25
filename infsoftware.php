@@ -4,6 +4,8 @@ session_start();
 $camp = $_SESSION['username'];
 require_once 'php/conexion.php';
 include 'loader.html';
+include 'boot.php';
+
 
 if ($camp == null || $camp == '') {
   header("location:index.php");
@@ -21,9 +23,6 @@ $date = date("d-M-Y");
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
   <title>Cloud Engine</title>
 </head>
 
@@ -153,6 +152,7 @@ $date = date("d-M-Y");
                   Categoria del software <?php echo $ver['categoriaSoft'] ?>
                 </p>
                 <button class="btn btn-primary">Agregar al carrito</button>
+                
                 </form>
               <?php } ?>
             </div>
@@ -181,7 +181,15 @@ $date = date("d-M-Y");
                   <div class="row">
                     <div class="col-sm-2">
                       <label id="image" class="text-white"><?php echo $camp ?></label><br>
-                      <img src="https://i.pinimg.com/originals/bb/3d/43/bb3d43fa506c564d150130d91ed4b21b.jpg" style="width:75px" id="image">
+                      <?php 
+                      $bus = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
+                      if ($fot = mysqli_fetch_array($bus)) {
+                        echo '
+                          <img src="data:image/png;base64,'.base64_encode($fot['foto']). '" class="card-img-top" alt="photo" style="width:75px; height:75px;">
+
+                        ';
+                      }
+                      ?>
                     </div>
                     <div class="col-sm-10">
                       <label id="comentario" class="text-white">Comentario</label>

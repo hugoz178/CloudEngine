@@ -157,7 +157,7 @@ if ($camp == null || $camp == '') {
                                 while ($ver = mysqli_fetch_array($consultaA)) {
                                     echo '
                                         <tr>
-                                        <td><img src="data:image/png;base64,' . base64_encode($ver['fotoSoft']) . '" class="card-img-top" style="width:50px; height:50px;"></td>
+                                        <td><img src="data:image/png;base64,'.base64_encode($ver['fotoSoft']). '" class="card-img-top" alt="photo" style="width:50px; height:50px;"></td>
                                         <td>' . $ver['nombreSoft'] . '</td>
                                         <td>' . $ver['descripcionSoft'] . '</td>
                                         <td>' . $ver['categoriaSoft'] . '</td>

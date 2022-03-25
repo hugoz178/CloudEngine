@@ -1,6 +1,7 @@
 <?php
 ob_start();
 session_start();
+error_reporting(0);
 include("php/conexion.php");
 include 'boot.php';
 include 'loader.html';
@@ -62,7 +63,9 @@ if (isset($_POST['opBtn'])) {
 	<title>Cloud Engine</title>
 	<!-- icono de la pagina -->
 	<link rel="icon" href="images/icons/agenda.png">
-	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script> 
+
 
 
 </head>
@@ -112,6 +115,7 @@ if (isset($_POST['opBtn'])) {
 				$result = mysqli_query($cnx, $sql);
 				while ($res = mysqli_fetch_array($result)) {
 					$saldo = $res['saldo'];
+
 				}
 				if ($saldo == 0) {
 					echo '
@@ -212,13 +216,11 @@ if (isset($_POST['opBtn'])) {
 				<div class="modal-body">
 					<form id="form" name="form" class="form-horizontal" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
 
-
-
 						<div class="form-group">
-							<input type="text" name="asunto" placeholder="Escribe el asunto">
+							<input type="text" name="asunto" id="asunto" placeholder="Escribe el asunto">
 						</div>
 						<div class="form-group">
-							<textarea placeholder="Escribe tu opinon" name="opinion"></textarea>
+							<textarea placeholder="Escribe tu opinon" name="opinion" id="opinion"></textarea>
 						</div>
 						<div class="form-group">
 							<button id="opBtn" name="opBtn" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Enviar opinon</button>
@@ -237,7 +239,79 @@ if (isset($_POST['opBtn'])) {
 		</div>
 	</div>
 
+<script type="text/javascript">
 
+//java
+
+$( "#form" ).bootstrapValidator({
+
+   feedbackIcons: {
+ 
+     valid: 'glyphicon glyphicon-ok',
+ 
+     invalid: 'glyphicon glyphicon-remove',
+ 
+     validating: 'glyphicon glyphicon-refresh'
+ 
+   },
+ 
+   fields: {
+ 
+     asunto: {
+ 
+       validators: {
+ 
+         notEmpty: {
+ 
+           message: 'Debes de escribir el asunto de tu solicitud'
+ 
+         },
+
+         stringLength: {
+ 
+           min: 5,
+
+           max: 20,
+ 
+           message: 'Unicamente se permite 20 caracteres como maximo y un minimo de 5'
+ 
+         }
+ 
+       }
+ 
+     },
+
+
+
+     opinion: {
+ 
+       validators: {
+
+        notEmpty: {
+ 
+           message: 'Debes de introducir una opinion'
+ 
+         },
+ 
+         stringLength: {
+ 
+           min: 10,
+
+           max: 50,
+ 
+           message: 'Unicamente se permite 50 caracteres como maximo y un minimo de 10'
+ 
+         }
+ 
+       }
+ 
+     }   
+
+  }
+ 
+});
+
+</script>
 
 
 </body>

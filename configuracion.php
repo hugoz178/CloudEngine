@@ -138,7 +138,7 @@ if (isset($_POST['subirfoto']))
 			<?php
 			}
 		
-      echo $camp;
+
 	?>
 
      <!-- Button to Open the Modal -->

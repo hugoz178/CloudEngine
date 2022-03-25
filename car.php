@@ -11,12 +11,11 @@ $sql=("SELECT * from software where idSoft='$idS'");
         while($res=mysqli_fetch_array($result))
         {
         	$nombre=$res['nombreSoft'];
-        	$foto= '<img src="data:image/png;base64,' . base64_encode($res['fotoSoft']) . '" class="card-img-top" alt="photo" style="width:300px; height:300px;">';
+        	$foto= '<img src="data:image/png;base64,' . base64_encode($res['fotoSoft']) . '">';
         	$descripcion=$res['descripcionSoft'];
         	$costo=$res['costoSoft'];
         	$categoria=$res['categoriaSoft'];
             $id=$res['idSoft'];
-
         }
 
         $carrito="INSERT INTO carrito (idS, nombreSoft, fotoSoft, descripcionSoft, costoSoft, CategoriaSoft, usuario) 

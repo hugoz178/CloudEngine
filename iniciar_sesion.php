@@ -51,7 +51,7 @@ if (isset($_POST['iniciar-session']))
 				$_SESSION['username'] = $campo['username'];
 				header("location:vista_admin.php");	
 			}
-			else
+			else 
 			{
 				$_SESSION['nombre'] = $campo['name'];
 				$_SESSION['username'] = $campo['username'];
@@ -109,7 +109,7 @@ if (isset($_POST['iniciar-session']))
 								<div class="form-group">
 									<div class="col-md-12 control">
 										<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-											No tiene una cuenta! <a href="inicio.php">Registrate aquí</a>
+											No tiene una cuenta! <a href="index.php">Registrate aquí</a>
 										</div>
 									</div>
 								</div>    

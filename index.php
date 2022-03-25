@@ -52,7 +52,7 @@ if (isset($_POST['regBtn']))
 
 
   if ($listo) {
-    header("Location:inicio.php");
+    header("Location:iniciar_sesion.php");
   }else{
     echo 'error';
   }

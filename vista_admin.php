@@ -25,7 +25,7 @@ if ($campo == null || $campo == '' || $campo !== 'hugoz178'){
 
 	</head>
 
-	<body style="overflow-x:hidden;overflow-y: hidden; background-color:#000000;">
+	<body style="overflow-x:hidden; background-color:#000000;">
 		<?php include 'loader.html'; ?>
 
 		<nav class="navbar navbar-inverse" style="background-color:black;">
@@ -138,14 +138,13 @@ if ($campo == null || $campo == '' || $campo !== 'hugoz178'){
 							<?php
 							$consOP=$cnx->query("SELECT * FROM opiniones");
 							while ($verOP=mysqli_fetch_array($consOP)) {
-								?>
+								echo '
 								<div style="border: 1px solid #5D00B9">
-								<img src="https://i.pinimg.com/originals/bb/3d/43/bb3d43fa506c564d150130d91ed4b21b.jpg"  class="mr-3 mt-3" style="width:10%;">
-								<h4 class="text-white">Usuario: <?php echo $verOP['username'] ?></h4>
-								<p class="text-white"><small> El asunto es: <?php echo $verOP['asunto'] ?></small></p>
-								<p class="text-white">Esta es su opinión: <?php echo $verOP['opinion'] ?><p> 
-								</div>	
-									<?php
+								<h4 class="text-white">Usuario: '. $verOP['username'].'</h4>
+								<p class="text-white"><small> El asunto es: '. $verOP['asunto'].'</small></p>
+								<p class="text-white">Esta es su opinión: '. $verOP['opinion'].'<p> 
+								</div>';	
+									
 								}
 								?>		
 
