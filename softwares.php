@@ -23,9 +23,12 @@ if (isset($_POST['registrar']))
 	$desS=$_REQUEST["descripcionSoft"];
 	$cosS=$_REQUEST["costoSoft"];
 	$catS=$_REQUEST["categoriaSoft"];
-	$foto = addslashes(file_get_contents($_FILES['foto']['tmp_name']));
+	$foto=$_FILES["foto"]["name"];
+	$ruta=$_FILES["foto"]["tmp_name"];
+	$destino="fotos/".$foto;
+	copy($ruta,$destino);
 
-	$insertar=("INSERT into software (idSoft,nombreSoft, fotoSoft, descripcionSoft,costoSoft, categoriaSoft,username) values('$cadena','$nomS', '$foto','$desS','$cosS','$catS','$camp')");
+	$insertar=("INSERT into software (idSoft,nombreSoft, fotoSoft, descripcionSoft,costoSoft, categoriaSoft,username) values('$cadena','$nomS', '$destino','$desS','$cosS','$catS','$camp')");
 	$resultado=mysqli_query($cnx,$insertar);
 
 	if (!$resultado) {
@@ -188,7 +191,7 @@ if (isset($_POST['actualizar']))
 													<div class="card card-cascade narrower" style="background-color:#050503;" >
 												  <div class="view view-cascade overlay"">
 												  <center>
-												  <img src="data:image/png;base64,'.base64_encode($row['fotoSoft']). '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
+												  <img src="'.$row['fotoSoft']. '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
 												    </center>
 												    <a>
 												      <div class="mask rgba-white-slight"></div>
