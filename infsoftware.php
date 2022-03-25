@@ -141,7 +141,7 @@ $date = date("d-M-Y");
                 <h1 class="card-tittle display-6 text-white">
                   <?php echo $ver['nombreSoft'] ?>
                 </h1>
-                <?php echo '<img src="'.$ver['fotoSoft'].'" class="card-img-top" alt="photo" style="width:300px; height:300px;">' ?>
+                <?php echo '<img src="data:image/png;base64,'.base64_encode($ver['fotoSoft']). '" class="card-img-top" alt="photo" style="width:300px; height:300px;">' ?>
                 <p class="card-text text-white">
                   <?php echo $ver['descripcionSoft'] ?>
                 </p>
@@ -185,7 +185,7 @@ $date = date("d-M-Y");
                       $bus = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
                       if ($fot = mysqli_fetch_array($bus)) {
                         echo '
-                          <img src="'.$fot['foto'].'" class="card-img-top" alt="photo" style="width:75px; height:75px;">
+                          <img src="data:image/png;base64,'.base64_encode($fot['foto']). '" class="card-img-top" alt="photo" style="width:75px; height:75px;">
 
                         ';
                       }
