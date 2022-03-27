@@ -95,7 +95,7 @@ $date= date("d-M-Y");
                                         if (!empty($_POST['comentario']))
                                         {
                                           mysqli_query($cnx,"INSERT into comentarios values
-                                            ( ' ',
+                                            ( '',
                                               '$id',
                                               '$camp',
                                               '$date',
