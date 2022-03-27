@@ -164,20 +164,22 @@ $date = date("d-M-Y");
               <div class="container mt-3">
                 <h1 class="display-6 text-white">Comentarios</h1>
                 <p class="text-white">Escribe tu comentario: </p>
-                <?php
-                if (isset($_POST['subircom'])) {
-                  if (!empty($_POST['comentario'])) {
-                    mysqli_query($cnx, "INSERT into comentarios values
+                                  <?php                       
+                                      if (isset($_POST['subircom'])) 
+                                      {
+                                        if (!empty($_POST['comentario']))
+                                        {
+                                          mysqli_query($cnx,"INSERT into comentarios values
                                             ( ' ',
                                               '$id',
                                               '$camp',
                                               '$date',
                                               '$time',
                                               '$_POST[comentario]')");
-                  }
-                }
-                ?>
-                <form method="POST">
+                                        }
+                                      }
+                                  ?>   
+                <form method="POST" action="<?php $_SERVER['PHP_SELF'] ?>">
                   <div class="row">
                     <div class="col-sm-2">
                       <label id="image" class="text-white"><?php echo $camp ?></label><br>
@@ -193,7 +195,7 @@ $date = date("d-M-Y");
                     </div>
                     <div class="col-sm-10">
                       <label id="comentario" class="text-white">Comentario</label>
-                      <textarea id="comentario" name="comentario" class="form-control" placeholcer="ingresa comentario" row="5" style="height:60px; resize: none; background-color: #2D2D2D; color:white;" name="message-box" id="message-box"></textarea>
+                      <textarea id="comentario" name="comentario" class="form-control" placeholcer="ingresa comentario" row="5" style="height:60px; resize: none; background-color: #2D2D2D; color:white;"></textarea>
                       <input type="submit" class="form-control btn" name="subircom" value="Enviar comentario" style="background-color:#5D00B9; color: white;">
                     </div>
                   </div>

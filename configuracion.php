@@ -13,15 +13,12 @@ if ($camp == null || $camp == ''){
 
 if (isset($_POST['subirfoto'])) 
 {
-  $foto=$_FILES["foto"]["name"];
-  $ruta=$_FILES["foto"]["tmp_name"];
-  $destino="fotos/".$foto;
-  copy($ruta,$destino);
+  $foto = addslashes(file_get_contents($_FILES['foto']['tmp_name']));
   $us = $_POST['usuario'];
   $co = $_POST['correo'];
   $ce = $_POST['celular'];
   $ps = $_POST['contrasena'];
-	$actualiza="UPDATE usuarios SET foto = '$destino', username = '$us', email = '$co', celular = '$ce', password = '$ps' WHERE username = '$us';";
+	$actualiza="UPDATE usuarios SET foto = '$foto', username = '$us', email = '$co', celular = '$ce', password = '$ps' WHERE username = '$us';";
 
 	$resultado=mysqli_query($cnx,$actualiza);
 
@@ -127,7 +124,7 @@ if (isset($_POST['subirfoto']))
 				?>
 			<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
 					<?php echo '
-          <img src="'.$row['foto'].'" class="card-img-top" alt="photo" style="width:300px; height:300px;">
+          <img src="data:image/png;base64,'.base64_encode($row['foto']). '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
           <input type="hidden" value="'.$row['username'].'" name="usuario">
           <input type="hidden" value="'.$row['email'].'" name="correo">
           <input type="hidden" value="'.$row['celular'].'" name="celular">
