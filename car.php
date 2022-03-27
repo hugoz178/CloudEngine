@@ -11,7 +11,7 @@ $sql=("SELECT * from software where idSoft='$idS'");
         while($res=mysqli_fetch_array($result))
         {
         	$nombre=$res['nombreSoft'];
-        	$foto= '<img src="'.$res['fotoSoft'].'">';
+        	$foto= '<img src="data:image/png;base64,'.base64_encode($result['fotoSoft']). '"';
         	$descripcion=$res['descripcionSoft'];
         	$costo=$res['costoSoft'];
         	$categoria=$res['categoriaSoft'];

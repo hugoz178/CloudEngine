@@ -169,6 +169,7 @@ $date = date("d-M-Y");
                                       {
                                         if (!empty($_POST['comentario']))
                                         {
+                                          $img = $cnx->query("SELECT foto FROM usuarios WHERE username='$camp'");
                                           mysqli_query($cnx,"INSERT into comentarios values
                                             ( ' ',
                                               '$id',
@@ -176,8 +177,11 @@ $date = date("d-M-Y");
                                               '$date',
                                               '$time',
                                               '$_POST[comentario]')");
+                                          
                                         }
                                       }
+
+                 
                                   ?>   
                 <form method="POST" action="<?php $_SERVER['PHP_SELF'] ?>">
                   <div class="row">
@@ -219,7 +223,9 @@ $date = date("d-M-Y");
                             while ($verCA = mysqli_fetch_array($consCA)) {
                             ?>
                               <div class="col-sm-4">
-                                <img src="https://i.pinimg.com/originals/bb/3d/43/bb3d43fa506c564d150130d91ed4b21b.jpg" class="mr-3 mt-3" style="width:10%;">
+                                <?php
+                                echo '<img src="data:image/png;base64,'.base64_encode($verCA['fotoUsuario']). '" class="card-img-top" alt="photo" style="width:75px; height:75px;">';
+                                ?>
                               </div>
                               <div class="col-sm-10">
                                 <h4 class="text-white"><?php echo $verCA['username'] ?></h4>
@@ -255,7 +261,9 @@ $date = date("d-M-Y");
                             while ($verCS = mysqli_fetch_array($consCS)) {
                             ?>
                               <div class="col-sm-4">
-                                <img src="https://i.pinimg.com/originals/bb/3d/43/bb3d43fa506c564d150130d91ed4b21b.jpg" class="mr-3 mt-3" style="width:10%;">
+                                <?php 
+                                echo '<img src="data:image/png;base64,'.base64_encode($verCS['fotoUsuario']). '" class="card-img-top" alt="photo" style="width:75px; height:75px;">';
+                                ?>
                               </div>
                               <div class="col-sm-10">
                                 <h4 class="text-white"><?php echo $verCS['username'] ?></h4>
