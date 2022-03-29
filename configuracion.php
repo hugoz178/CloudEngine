@@ -11,14 +11,14 @@ if ($camp == null || $camp == ''){
   die();
 }
 
-if (isset($_POST['subirfoto'])) 
+if (isset($_POST['actpass'])) 
 {
-  $foto = addslashes(file_get_contents($_FILES['foto']['tmp_name']));
-  $us = $_POST['usuario'];
   $co = $_POST['correo'];
   $ce = $_POST['celular'];
-  $ps = $_POST['contrasena'];
-	$actualiza="UPDATE usuarios SET foto = '$foto', username = '$us', email = '$co', celular = '$ce', password = '$ps' WHERE username = '$us';";
+  $sha = $_POST['contrasena'];
+  $ps = sha1($sha);
+
+	$actualiza="UPDATE usuarios SET username = '$camp', email = '$co', celular = '$ce', password = '$ps' WHERE username = '$camp';";
 
 	$resultado=mysqli_query($cnx,$actualiza);
 
@@ -115,50 +115,102 @@ if (isset($_POST['subirfoto']))
               }
             }
       }
-
-
-		
-
-		$sql = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
-			while ($row=mysqli_fetch_array($sql)) {
-				?>
-			<form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data">
-					<?php echo '
-          <img src="data:image/png;base64,'.base64_encode($row['foto']). '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
-          <input type="hidden" value="'.$row['username'].'" name="usuario">
-          <input type="hidden" value="'.$row['email'].'" name="correo">
-          <input type="hidden" value="'.$row['celular'].'" name="celular">
-          <input type="hidden" value="'.$row['password'].'" name="contrasena">
-
-          '; ?>
-				<p>Actualizar imagen: </p>
-				<input type="file" name="foto">
-				<input type="submit" name="subirfoto">
-			</form>
-			<?php
-
-			}
-		
-
 	?>
 
-     <!-- Button to Open the Modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-      Open modal
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contra">
+      Cambiar contraseña
     </button>
 
-    <!-- The Modal -->
+    <div class="modal" id="contra">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h4 class="modal-title">Cambia tu contraseña</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+          <?php
+            $sql = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
+              while ($row=mysqli_fetch_array($sql)) {
+                ?>
+              <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" >
+                  <?php echo '
+                  <input type="hidden" value="'.$row['email'].'" name="correo">
+                  <input type="hidden" value="'.$row['celular'].'" name="celular">
+                  '; ?>
+                <p>Actualizar contrasena </p>
+                <input type="password" name="contrasena">
+                <input type="submit" name="actpass">
+              </form>
+              <?php
+              }
+          ?>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div> 
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tel">
+      Cambiar CELULAR
+    </button>
+
+    <div class="modal" id="tel">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h4 class="modal-title">Cambia tu num celular</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+          <?php
+            $sql = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
+              while ($row=mysqli_fetch_array($sql)) {
+                ?>
+              <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" >
+                  <?php echo '
+                  <input type="hidden" value="'.$row['email'].'" name="correo">
+                  <input type="hidden" value="'.$row['password'].'" name="contrasena">
+                  <p>Actualizar contrasena </p>
+                  <input type="text" value="'.$row['celular'].'" name="celular">
+                  <input type="submit" name="actpass">
+                  '; ?>
+
+              </form>
+              <?php
+              }
+          ?>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div> 
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+      Eliminar cuenta
+    </button>
+
     <div class="modal" id="myModal">
       <div class="modal-dialog">
         <div class="modal-content">
 
-          <!-- Modal Header -->
           <div class="modal-header">
             <h4 class="modal-title">No te vayas!!</h4>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
 
-          <!-- Modal body -->
           <div class="modal-body">
             <form id="form" action="eliminarcuenta.php">
               <div>
@@ -171,7 +223,6 @@ if (isset($_POST['subirfoto']))
             </form>
           </div>
 
-          <!-- Modal footer -->
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
           </div>

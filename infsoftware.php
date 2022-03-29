@@ -37,8 +37,7 @@ $date = date("d-M-Y");
       $cons = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
       if ($cons) {
         if ($_SESSION['username'] == 'hugoz178') {
-          $consA = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
-          if ($verA = mysqli_fetch_array($consA)) {
+          if ($verA = mysqli_fetch_array($cons)) {
   ?>
             <!-- NAV ADMIN -->
             <nav class="navbar navbar-inverse" style="background-color:black;">
@@ -81,8 +80,7 @@ $date = date("d-M-Y");
           <?php
           }
         } else {
-          $consU = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
-          if ($consU) {
+          if ($cons) {
           ?>
             <!-- NAV USUARIO -->
             <nav class="navbar navbar-inverse" style="background-color:#000000;">
@@ -151,11 +149,33 @@ $date = date("d-M-Y");
                 <p class="card-text text-white">
                   Categoria del software <?php echo $ver['categoriaSoft'] ?>
                 </p>
-                <button class="btn btn-primary">Agregar al carrito</button>
-                
+                <?php
+                $cons = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
+                if ($cons) {
+                  if ($_SESSION['username'] == 'hugoz178') {
+                    if ($verBA = mysqli_fetch_array($cons)) {
+                      
+                    }
+                  }else{
+                    if ($cons) {
+                      $boton = $cnx->query("SELECT idS, usuario FROM compras WHERE usuario = '$camp' AND idS = '$id'");
+                            if ($busqueda = mysqli_fetch_array($boton)) {
+                                $username = $busqueda['usuario'];
+                                $idsoft = $busqueda['idS'];
+                                if ($username and $idsoft == true) {
+                                    echo '<p class="text-white">Ya compraste este producto</p>';
+                                }
+                                }else{
+                                      echo '<button class="btn btn-primary">Agregar al carrito</button>';
+                                }
+                    }
+                  }
+                }
+                ?>
                 </form>
               <?php } ?>
             </div>
+            
           </div>
         </div>
         <div class="col-md-8">
@@ -169,7 +189,6 @@ $date = date("d-M-Y");
                                       {
                                         if (!empty($_POST['comentario']))
                                         {
-                                          $img = $cnx->query("SELECT foto FROM usuarios WHERE username='$camp'");
                                           mysqli_query($cnx,"INSERT into comentarios values
                                             ( ' ',
                                               '$id',
@@ -177,7 +196,6 @@ $date = date("d-M-Y");
                                               '$date',
                                               '$time',
                                               '$_POST[comentario]')");
-                                          
                                         }
                                       }
 
@@ -185,19 +203,7 @@ $date = date("d-M-Y");
                                   ?>   
                 <form method="POST" action="<?php $_SERVER['PHP_SELF'] ?>">
                   <div class="row">
-                    <div class="col-sm-2">
-                      <label id="image" class="text-white"><?php echo $camp ?></label><br>
-                      <?php 
-                      $bus = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
-                      if ($fot = mysqli_fetch_array($bus)) {
-                        echo '
-                          <img src="data:image/png;base64,'.base64_encode($fot['foto']). '" class="card-img-top" alt="photo" style="width:75px; height:75px;">
-
-                        ';
-                      }
-                      ?>
-                    </div>
-                    <div class="col-sm-10">
+                    <div class="col-sm-12">
                       <label id="comentario" class="text-white">Comentario</label>
                       <textarea id="comentario" name="comentario" class="form-control" placeholcer="ingresa comentario" row="5" style="height:60px; resize: none; background-color: #2D2D2D; color:white;"></textarea>
                       <input type="submit" class="form-control btn" name="subircom" value="Enviar comentario" style="background-color:#5D00B9; color: white;">
@@ -222,11 +228,7 @@ $date = date("d-M-Y");
                             $consCA = $cnx->query("SELECT * FROM comentarios WHERE idSoft='$id' ORDER BY comSoft asc");
                             while ($verCA = mysqli_fetch_array($consCA)) {
                             ?>
-                              <div class="col-sm-4">
-                                <?php
-                                echo '<img src="data:image/png;base64,'.base64_encode($verCA['fotoUsuario']). '" class="card-img-top" alt="photo" style="width:75px; height:75px;">';
-                                ?>
-                              </div>
+
                               <div class="col-sm-10">
                                 <h4 class="text-white"><?php echo $verCA['username'] ?></h4>
                                 <p class="text-white"><small><?php echo $verCA['fechaCom'] ?></small></p>
@@ -260,11 +262,6 @@ $date = date("d-M-Y");
                             $consCS = $cnx->query("SELECT * FROM comentarios WHERE idSoft='$id'");
                             while ($verCS = mysqli_fetch_array($consCS)) {
                             ?>
-                              <div class="col-sm-4">
-                                <?php 
-                                echo '<img src="data:image/png;base64,'.base64_encode($verCS['fotoUsuario']). '" class="card-img-top" alt="photo" style="width:75px; height:75px;">';
-                                ?>
-                              </div>
                               <div class="col-sm-10">
                                 <h4 class="text-white"><?php echo $verCS['username'] ?></h4>
                                 <p class="text-white"><small><?php echo $verCS['fechaCom'] ?></small></p>
