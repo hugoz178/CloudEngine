@@ -40,9 +40,8 @@ if ($camp == null || $camp == '') {
                             </button>
                         </div>
                         <ul class="nav navbar-nav">
-                            <h1>Cloud Engine</h1>
+                            <h1 style="color:#5D00B9">Cloud Engine</h1>
                         </ul>
-
                     </div>
                 </nav>
 
@@ -101,9 +100,37 @@ if ($camp == null || $camp == '') {
                             <a href="vista_usuario.php" class="btn">
                                 <h2 style="color:#5D00B9">Inicio</h2>
                             </a><br>
-                            <a href="" class="btn">
+                            <a href="misjuegos.php" class="btn">
                                 <h2 style="color:#5D00B9">Mi Juegos</h2>
                             </a><br>
+                            <a href="configuracion.php" class="btn">
+                                <h2 style="color:#5D00B9">Configuración</h2>
+                            </a><br>                            
+                            <?php
+                            $sql = ("SELECT * FROM saldo where usuario='$camp'");
+                            $result = mysqli_query($cnx, $sql);
+                            while ($res = mysqli_fetch_array($result)) {
+                                $saldo = $res['saldo'];
+
+                            }
+                            if ($saldo == 0) {
+                                echo '
+                                <a href="saldo.php" class="btn">
+                                <h3 style="color:#5D00B9">Agregar saldo</h3>
+                                <h3 style="color:#5D00B9"><i class="fas fa-plus"><span class="counter"> $ 0</span></i></h3>
+                                </a>';
+                            } else {
+                                $sql2 = $cnx->query("SELECT * FROM saldo where usuario='$camp'");
+                                while ($row1 = mysqli_fetch_array($sql2)) {
+                                    echo '
+                                    <a href="saldo.php" class="btn">
+                                    <h3 style="color:#5D00B9">Agregar saldo</h3>
+                                    <h3 style="color:#5D00B9"><i class="fas fa-plus"><span class="counter"> $ ' . $row1['saldo'] . '</span></i></h3>
+                                    </a>';
+                                }
+                            }
+                            ?>           
+                            <br><br><br>                 
                             <a href="logout.php" class="btn">
                                 <h2 style="color:#5D00B9">Cerrar sesión</h2>
                             </a>
@@ -157,7 +184,7 @@ if ($camp == null || $camp == '') {
                                 while ($ver = mysqli_fetch_array($consultaA)) {
                                     echo '
                                         <tr>
-                                        <td><img src="data:image/png;base64,'.base64_encode($ver['fotoSoft']). '" class="card-img-top" alt="photo" style="width:50px; height:50px;"></td>
+                                        <td> <img src="'.$ver['fotoSoft'].'" width="50px" heigth="50px"></td>
                                         <td>' . $ver['nombreSoft'] . '</td>
                                         <td>' . $ver['descripcionSoft'] . '</td>
                                         <td>' . $ver['categoriaSoft'] . '</td>

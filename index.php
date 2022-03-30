@@ -272,39 +272,8 @@ $( "#form" ).bootstrapValidator({
        }
 
 
-     },
-
+     }  
  
-     password: {
- 
-       validators: {
- 
-         notEmpty: {
- 
-           message: 'Debes ingresar una contraseña.'
- 
-         },
- 
-         stringLength: {
- 
-           min: 5,
-          max:25,
- 
-           message: 'Maximo 5 caracteres y maximo 25.\n'
- 
-         },
-
-         identical: {
-                        field: 'confirmar',
-                        message:'Confirma tu contraseña. '
-                    }
-
- 
-       }
- 
-     }   
- 
-
   }
  
 });

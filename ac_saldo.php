@@ -3,7 +3,6 @@ ob_start();
 session_start();
 include 'php/conexion.php';
 include 'boot.php';
-include 'loader.html';
 $camp = $_SESSION['username'];
 
 if ($camp == null || $camp == '') {

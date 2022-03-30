@@ -139,7 +139,7 @@ $date = date("d-M-Y");
                 <h1 class="card-tittle display-6 text-white">
                   <?php echo $ver['nombreSoft'] ?>
                 </h1>
-                <?php echo '<img src="data:image/png;base64,'.base64_encode($ver['fotoSoft']). '" class="card-img-top" alt="photo" style="width:300px; height:300px;">' ?>
+                <?php echo '<img src="'.$ver['fotoSoft']. '" class="card-img-top" alt="photo" style="width:300px; height:300px;">' ?>
                 <p class="card-text text-white">
                   <?php echo $ver['descripcionSoft'] ?>
                 </p>
@@ -205,7 +205,7 @@ $date = date("d-M-Y");
                   <div class="row">
                     <div class="col-sm-12">
                       <label id="comentario" class="text-white">Comentario</label>
-                      <textarea id="comentario" name="comentario" class="form-control" placeholcer="ingresa comentario" row="5" style="height:60px; resize: none; background-color: #2D2D2D; color:white;"></textarea>
+                      <textarea id="comentario" name="comentario" class="form-control" placeholcer="ingresa comentario" row="5" style="height:60px; resize: none; background-color: #2D2D2D; color:white;" maxlength="100"></textarea>
                       <input type="submit" class="form-control btn" name="subircom" value="Enviar comentario" style="background-color:#5D00B9; color: white;">
                     </div>
                   </div>

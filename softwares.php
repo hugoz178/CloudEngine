@@ -23,9 +23,12 @@ if (isset($_POST['registrar']))
 	$desS=$_REQUEST["descripcionSoft"];
 	$cosS=$_REQUEST["costoSoft"];
 	$catS=$_REQUEST["categoriaSoft"];
-	$foto = addslashes(file_get_contents($_FILES['foto']['tmp_name']));
+	$foto=$_FILES["foto"]["name"];
+	$ruta=$_FILES["foto"]["tmp_name"];
+	$destino="fotoS/".$foto;
+	copy($ruta,$destino);
 
-	$insertar=("INSERT into software (idSoft,nombreSoft, fotoSoft, descripcionSoft,costoSoft, categoriaSoft,username) values('$cadena','$nomS', '$foto','$desS','$cosS','$catS','$camp')");
+	$insertar=("INSERT into software (idSoft,nombreSoft, fotoSoft, descripcionSoft,costoSoft, categoriaSoft,username) values('$cadena','$nomS', '$destino','$desS','$cosS','$catS','$camp')");
 	$resultado=mysqli_query($cnx,$insertar);
 
 	if (!$resultado) {
@@ -140,7 +143,7 @@ if (isset($_POST['actualizar']))
 
 						<div class="input-group">
 							<span class="input-group-addon"></span>
-							<input class="btn form-control input-lg" style="background-color: #2D2D2D; color:white;" type="file" name="foto" id="foto">
+							<input class="btn form-control input-lg" style="background-color: #2D2D2D; color:white;" type="file" name="foto" id="foto" accept="image/png, .jpeg, .jpg">
 						</div><br>
 
 						<div class="input-group">
@@ -161,7 +164,6 @@ if (isset($_POST['actualizar']))
 						<button type="submit" class="btn" style="background-color:#5D00B9" name="registrar"><i class='fas fa-plus' style='color:white; font-size:26px'></i></button>
 
 						<button type="submit" class="btn" style="background-color:#5D00B9" name="eliminar"><i class="material-icons" style='color:white; font-size:26px'>delete</i></button>
-						
 						
 						<button type="submit" class="btn" style="background-color:#5D00B9" name="buscar"><i class='fas fa-search' style='color:white; font-size:26px'></i></button>
 
@@ -185,22 +187,22 @@ if (isset($_POST['actualizar']))
 ?>
 <td>
     <?php echo '
-													<div class="card card-cascade narrower" style="background-color:#050503;" >
-												  <div class="view view-cascade overlay"">
-												  <center>
-												  <img src="data:image/png;base64,'.base64_encode($row['fotoSoft']). '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
-												    </center>
-												    <a>
-												      <div class="mask rgba-white-slight"></div>
-												    </a>
-												  </div>
-												  <div class="card-body card-body-cascade">
-												    <h5 class="text-white pb-2 pt-1"><i class="fas fa-shopping-bag"></i>  '.$row['categoriaSoft']. ' Id:'.$row['idSoft'].'</h5>
-												   <h4 class="font-weight-bold card-title text-white">'.$row['nombreSoft'].'</h4>
-												    <p class="card-text text-white">'.$row['descripcionSoft'].'</p>
-												    <a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id='.$row['idSoft'].'">Obervar Software</a>
-												  </div>
-												</div>';
+		<div class="card card-cascade narrower" style="background-color:#050503;" >
+		    <div class="view view-cascade overlay"">
+		 <center>
+		  <img src="'.$row['fotoSoft'].'" class="card-img-top" alt="photo" style="width:300px; height:300px;">
+		 </center>
+			<a>
+			<div class="mask rgba-white-slight"></div>
+			</a>
+		</div>
+			<div class="card-body card-body-cascade">
+				<h5 class="text-white pb-2 pt-1"><i class="fas fa-shopping-bag"></i>  '.$row['categoriaSoft']. ' Id:'.$row['idSoft'].'</h5>
+				<h4 class="font-weight-bold card-title text-white">'.$row['nombreSoft'].'</h4>
+				<p class="card-text text-white">'.$row['descripcionSoft'].'</p>
+				<a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id='.$row['idSoft'].'">Obervar Software</a>
+			</div>
+				';
 ?>
 </td>
 <?php

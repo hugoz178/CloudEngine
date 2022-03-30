@@ -14,7 +14,44 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 }
 
 
+if (isset($_POST['opBtn'])) {
 
+	$as = $_POST['asunto'];
+	$op = $_POST['opinion'];
+
+	$registrar = "INSERT INTO opiniones (username,asunto,opinion)
+	VALUES ('$camp','$as','$op');";
+
+	$listo = mysqli_query($cnx, $registrar);
+
+	if ($listo) {
+		echo "
+				  <div class='toast show' style='width:100%'>
+				    <div class='toast-header'>
+				      <strong class='me-auto'>Formulario enviado!!</strong>
+				      <button type='button' class='btn-close' data-bs-dismiss='toast'></button>
+				    </div>
+				    <div class='toast-body'>
+				      <p>Gracias por contactar con nosotros. Tu opinión nos interesa.</p>
+				      <p><small>Puedes cerrar esta pestaña</small></p>
+				    </div>
+				  </div>
+				  ";
+	} else {
+		echo "
+				  <div class='toast show' style='width:100%'>
+				    <div class='toast-header'>
+				      <strong class='me-auto'>Error al enviar</strong>
+				      <button type='button' class='btn-close' data-bs-dismiss='toast'></button>
+				    </div>
+				    <div class='toast-body'>
+				      <p>Upss! Parece que hubo un error al enviar el formulario. Intentalo mas tarde</p>
+				      <p><small>Puedes cerrar esta pestaña</small></p>
+				    </div>
+				  </div>
+				  ";
+	}
+}
 
 ?>
 
@@ -28,6 +65,9 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 	<link rel="icon" href="images/icons/agenda.png">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script> 
+
+
+
 </head>
 
 <body style="overflow-x:hidden; background-color:#000000;">
@@ -55,8 +95,8 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 		</div>
 		<div class="offcanvas-body">
 			<div class="btn-group-vertical" style="width:280px">
-				<a href="misjuegos.php" class="btn">
-					<h3 style="color:#5D00B9">Mis juegos</h3>
+				<a href="vista_usuario.php" class="btn">
+					<h3 style="color:#5D00B9">Inicio</h3>
 				</a><br>
 				<a href="ver_carrito.php" class="btn">
 					<h3 style="color:#5D00B9">Mi carrito</h3>
@@ -99,48 +139,7 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 		</div>
 	</div>
 
-<?php
 
-if (isset($_POST['opBtn'])) {
-
-	$as = $_POST['asunto'];
-	$op = $_POST['opinion'];
-
-	$registrar = "INSERT INTO opiniones (username,asunto,opinion)
-	VALUES ('$camp','$as','$op');";
-
-	$listo = mysqli_query($cnx, $registrar);
-
-	if ($listo) {
-		echo "
-				  <div class='toast show' style='width:100%'>
-				    <div class='toast-header'>
-				      <strong class='me-auto'>Formulario enviado!!</strong>
-				      <button type='button' class='btn-close' data-bs-dismiss='toast'></button>
-				    </div>
-				    <div class='toast-body'>
-				      <p>Gracias por contactar con nosotros. Tu opinión nos interesa.</p>
-				      <p><small>Puedes cerrar esta pestañita</small></p>
-				    </div>
-				  </div>
-				  ";
-	} else {
-		echo "
-				  <div class='toast show' style='width:100%'>
-				    <div class='toast-header'>
-				      <strong class='me-auto'>Error al enviar</strong>
-				      <button type='button' class='btn-close' data-bs-dismiss='toast'></button>
-				    </div>
-				    <div class='toast-body'>
-				      <p>Upss! Parece que hubo un error al enviar el formulario. Intentalo mas tarde</p>
-				      <p><small>Puedes cerrar esta pestañita</small></p>
-				    </div>
-				  </div>
-				  ";
-	}
-}
-
-?>
 	<div class="row">
 		<div class="col-md-2"> </div>
 		<div class="col-md-8">
@@ -152,7 +151,7 @@ if (isset($_POST['opBtn'])) {
 								<tr>
 									<?php
 										$con=0;
-										$sql3 = $cnx->query("SELECT * FROM software");
+										$sql3 = $cnx->query("SELECT * FROM compras WHERE usuario='$camp'");
 										while ($row=mysqli_fetch_array($sql3)) {
 
 										?>
@@ -161,7 +160,7 @@ if (isset($_POST['opBtn'])) {
 													<div class="card card-cascade narrower" style="background-color:#050503;" >
 												  <div class="view view-cascade overlay"">
 												  <center>
-												  <img src="'.$row['fotoSoft']. '" class="card-img-top" alt="photo" style="width:500px; height:500px;">
+												  <img src="'.$row['fotoSoft'].'" class="card-img-top" alt="photo" style="width:500px; height:500px;">
 												    </center>
 												    <a>
 												      <div class="mask rgba-white-slight"></div>
@@ -171,7 +170,7 @@ if (isset($_POST['opBtn'])) {
 												    <h5 class="text-white pb-2 pt-1"><i class="fas fa-shopping-bag"></i>  '.$row['categoriaSoft'].'</h5>
 												    <h4 class="font-weight-bold card-title text-white">'.$row['nombreSoft'].'</h4>
 												    <p class="card-text text-white">'.$row['descripcionSoft'].'</p>
-												    <a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id='.$row['idSoft'].'">Obervar Software</a>
+												    <a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id='.$row['idS'].'">Obervar Software</a>
 												  </div>
 												</div>';
 													?>
@@ -197,11 +196,10 @@ if (isset($_POST['opBtn'])) {
 		</div>
 		<div class="col-md-2"> </div>
 
-
-
-
-
 	</div>
+
+
+
 
 
 	<div class="modal" id="myModal">

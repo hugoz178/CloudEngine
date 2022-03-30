@@ -101,7 +101,7 @@ if ($campo == null || $campo == '' || $campo !== 'hugoz178'){
 													<div class="card card-cascade narrower" style="background-color:#050503;" >
 												  <div class="view view-cascade overlay"">
 												  <center>
-												  <img src="data:image/png;base64,'.base64_encode($row['fotoSoft']). '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
+												  <img src="'.$row['fotoSoft']. '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
 												    </center>
 												    <a>
 												      <div class="mask rgba-white-slight"></div>
