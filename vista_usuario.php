@@ -12,10 +12,6 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 	header("location:index.php");
 	die();
 }
-
-
-
-
 ?>
 
 <!doctype html>
@@ -24,13 +20,12 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 <head>
 	<meta charset="utf-8">
 	<title>Cloud Engine</title>
-	<!-- icono de la pagina -->
-	<link rel="icon" href="images/icons/agenda.png">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script> 
+	<script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
 </head>
 
-<body style="overflow-x:hidden; background-color:#000000;">
+<body style="overflow-x:hidden;">
+
 	<nav class="navbar navbar-inverse" style="background-color:#000000;">
 		<div class="container-fluid ">
 			<div class="navbar-header">
@@ -72,7 +67,6 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 				$result = mysqli_query($cnx, $sql);
 				while ($res = mysqli_fetch_array($result)) {
 					$saldo = $res['saldo'];
-
 				}
 				if ($saldo == 0) {
 					echo '
@@ -99,20 +93,20 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 		</div>
 	</div>
 
-<?php
+	<?php
 
-if (isset($_POST['opBtn'])) {
+	if (isset($_POST['opBtn'])) {
 
-	$as = $_POST['asunto'];
-	$op = $_POST['opinion'];
+		$as = $_POST['asunto'];
+		$op = $_POST['opinion'];
 
-	$registrar = "INSERT INTO opiniones (username,asunto,opinion)
+		$registrar = "INSERT INTO opiniones (username,asunto,opinion)
 	VALUES ('$camp','$as','$op');";
 
-	$listo = mysqli_query($cnx, $registrar);
+		$listo = mysqli_query($cnx, $registrar);
 
-	if ($listo) {
-		echo "
+		if ($listo) {
+			echo "
 				  <div class='toast show' style='width:100%'>
 				    <div class='toast-header'>
 				      <strong class='me-auto'>Formulario enviado!!</strong>
@@ -124,8 +118,8 @@ if (isset($_POST['opBtn'])) {
 				    </div>
 				  </div>
 				  ";
-	} else {
-		echo "
+		} else {
+			echo "
 				  <div class='toast show' style='width:100%'>
 				    <div class='toast-header'>
 				      <strong class='me-auto'>Error al enviar</strong>
@@ -137,75 +131,66 @@ if (isset($_POST['opBtn'])) {
 				    </div>
 				  </div>
 				  ";
+		}
 	}
-}
 
-?>
-	<div class="row">
-		<div class="col-md-2"> </div>
-		<div class="col-md-8">
-			<div class="card" style="height:900px; background-color:#000000;">
-				<div class="card-body">
-					<center>
-						<table>
-							<br>
-								<tr>
-									<?php
-										$con=0;
-										$sql3 = $cnx->query("SELECT * FROM software");
-										while ($row=mysqli_fetch_array($sql3)) {
+	?>
 
-										?>
-											<td>
-												<?php echo '
+
+	<div class="container">
+		<div class="row gx-3 justify-content-center">
+			<div class="col-lg-1 col-md-12"></div>
+
+			<div class="col-lg-10 col-md-6">
+				<table>
+					<br>
+					<tr>
+						<?php
+						$con = 0;
+						$sql3 = $cnx->query("SELECT * FROM software");
+						while ($row = mysqli_fetch_array($sql3)) {
+
+						?>
+							<td>
+								<?php echo '
 													<div class="card card-cascade narrower" style="background-color:#050503;" >
 												  <div class="view view-cascade overlay"">
 												  <center>
-												  <img src="'.$row['fotoSoft']. '" class="card-img-top" alt="photo" style="width:500px; height:500px;">
+												  <img src="' . $row['fotoSoft'] . '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
 												    </center>
 												    <a>
 												      <div class="mask rgba-white-slight"></div>
 												    </a>
 												  </div>
 												  <div class="card-body card-body-cascade">
-												    <h5 class="text-white pb-2 pt-1"><i class="fas fa-shopping-bag"></i>  '.$row['categoriaSoft'].'</h5>
-												    <h4 class="font-weight-bold card-title text-white">'.$row['nombreSoft'].'</h4>
-												    <p class="card-text text-white">'.$row['descripcionSoft'].'</p>
-												    <a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id='.$row['idSoft'].'">Obervar Software</a>
+												    <h5 class="text-white pb-2 pt-1"><i class="fas fa-shopping-bag"></i>  ' . $row['categoriaSoft'] . '</h5>
+												    <h4 class="font-weight-bold card-title text-white">' . $row['nombreSoft'] . '</h4>
+												    <p class="card-text text-white">' . $row['descripcionSoft'] . '</p>
+												    <a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id=' . $row['idSoft'] . '">Obervar Software</a>
 												  </div>
 												</div>';
-													?>
-											</td>
-												<?php
-												$con=$con+1;
-												if($con==2){
-													echo "</tr>
+								?>
+							</td>
+						<?php
+							$con = $con + 1;
+							if ($con == 3) {
+								echo "</tr>
 													<tr>";
-													$con=0;
-												}
-											}
-									?>  
-								</tr>
-						</table>
-					</center>
-
-
-
-				</div>
+								$con = 0;
+							}
+						}
+						?>
+					</tr>
+				</table>
 			</div>
 
+			<div class="col-lg-1 col-md-6"></div>
 		</div>
-		<div class="col-md-2"> </div>
-
-
-
-
-
 	</div>
-
+	<br><br>
 
 	<div class="modal" id="myModal">
-		<div class="modal-dialog modal-xl">
+		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 
 				<!-- Modal Header -->
@@ -216,20 +201,32 @@ if (isset($_POST['opBtn'])) {
 
 				<!-- Modal body -->
 				<div class="modal-body">
-					<form id="form" name="form" class="form-horizontal" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
+					<center>
+						<form id="form" name="form" class="form-horizontal" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
 
-						<div class="form-group">
-							<input type="text" name="asunto" id="asunto" placeholder="Escribe el asunto">
-						</div>
-						<div class="form-group">
-							<textarea placeholder="Escribe tu opinon" name="opinion" id="opinion"></textarea>
-						</div>
-						<div class="form-group">
-							<button id="opBtn" name="opBtn" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Enviar opinon</button>
-						</div>
-						<div class="form-group"></div>
+							<div class="form-group">
+								<label for="usuario" class="col-md-3 control-label">Asunto del mensaje</label>
+								<div class="col-md-11">
+									<input type="text" name="asunto" id="asunto" placeholder="Escribe el asunto">
+								</div>
+							</div>
 
-					</form>
+							<div class="form-group">
+								<label for="usuario" class="col-md-3 control-label">Opinion</label>
+								<div class="col-md-11">
+									<textarea cols="40" rows="5" placeholder="Escribe tu opinon" name="opinion" id="opinion"></textarea>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-md-offset-3 col-md-10">
+									<br>
+									<button id="opBtn" name="opBtn" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Enviar opinon</button>
+								</div>
+							</div>
+
+						</form>
+					</center>
 				</div>
 
 				<!-- Modal footer -->
@@ -241,79 +238,77 @@ if (isset($_POST['opBtn'])) {
 		</div>
 	</div>
 
-<script type="text/javascript">
+	<script type="text/javascript">
+		//java
 
-//java
+		$("#form").bootstrapValidator({
 
-$( "#form" ).bootstrapValidator({
+			feedbackIcons: {
 
-   feedbackIcons: {
- 
-     valid: 'glyphicon glyphicon-ok',
- 
-     invalid: 'glyphicon glyphicon-remove',
- 
-     validating: 'glyphicon glyphicon-refresh'
- 
-   },
- 
-   fields: {
- 
-     asunto: {
- 
-       validators: {
- 
-         notEmpty: {
- 
-           message: 'Debes de escribir el asunto de tu solicitud'
- 
-         },
+				valid: 'glyphicon glyphicon-ok',
 
-         stringLength: {
- 
-           min: 5,
+				invalid: 'glyphicon glyphicon-remove',
 
-           max: 20,
- 
-           message: 'Unicamente se permite 20 caracteres como maximo y un minimo de 5'
- 
-         }
- 
-       }
- 
-     },
+				validating: 'glyphicon glyphicon-refresh'
 
+			},
+
+			fields: {
+
+				asunto: {
+
+					validators: {
+
+						notEmpty: {
+
+							message: 'Debes de escribir el asunto de tu solicitud'
+
+						},
+
+						stringLength: {
+
+							min: 5,
+
+							max: 20,
+
+							message: 'Unicamente se permite 20 caracteres como maximo y un minimo de 5'
+
+						}
+
+					}
+
+				},
 
 
-     opinion: {
- 
-       validators: {
 
-        notEmpty: {
- 
-           message: 'Debes de introducir una opinion'
- 
-         },
- 
-         stringLength: {
- 
-           min: 10,
+				opinion: {
 
-           max: 50,
- 
-           message: 'Unicamente se permite 50 caracteres como maximo y un minimo de 10'
- 
-         }
- 
-       }
- 
-     }   
+					validators: {
 
-  }
- 
-});
+						notEmpty: {
 
-</script>
+							message: 'Debes de introducir una opinion'
+
+						},
+
+						stringLength: {
+
+							min: 10,
+
+							max: 50,
+
+							message: 'Unicamente se permite 50 caracteres como maximo y un minimo de 10'
+
+						}
+
+					}
+
+				}
+
+			}
+
+		});
+	</script>
 
 
 </body>
