@@ -121,7 +121,7 @@ if (isset($_POST['regBtn'])) {
 
       <div class="col-md-6">
         <center>
-        <h1>Nuestra funcionalidad</h1>
+          <h1>Nuestra funcionalidad</h1>
         </center>
         <p class="fs-5">Nuestro servicios va a permitir que nuestros usuarios descargen juegos y otro software desde sus bibliotecas de software virtual. Los juegos que son integrados en CloudEngine son almacenados dentro de la nube, para que el usuario no tenga que usar mucho espacio de su almacenamiento en su ordenador.</p>
       </div>
@@ -129,14 +129,14 @@ if (isset($_POST['regBtn'])) {
   </div>
   <!--Fin de Info-->
 
-
+  <!--Inicio de modal-->
   <div class="modal" id="registro">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
 
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
+          <h4 class="modal-title">Registrar</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
 
@@ -144,159 +144,158 @@ if (isset($_POST['regBtn'])) {
         <div class="modal-body">
           <form id="form" name="form" class="form-horizontal" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
 
-
-            <div class="form-group">
-              <label for="usuario" class="col-md-3 control-label">Usuario</label>
-              <div class="col-md-9">
-                <input type="text" class="form-control" name="username" placeholder="Usuario">
+            <center>
+              <div class="form-group">
+                <label for="usuario" class="col-md-3 control-label">Usuario</label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" name="username" placeholder="Usuario">
+                </div>
               </div>
-            </div>
 
-            <div class="form-group">
-              <label for="email" class="col-md-3 control-label">Email</label>
-              <div class="col-md-9">
-                <input type="email" class="form-control" name="email" placeholder="Email">
+              <div class="form-group">
+                <label for="email" class="col-md-3 control-label">Email</label>
+                <div class="col-md-10">
+                  <input type="email" class="form-control" name="email" placeholder="Email">
+                </div>
               </div>
-            </div>
 
-            <div class="form-group">
-              <label for="nombre" class="col-md-3 control-label">Numero de telefono:</label>
-              <div class="col-md-9">
-                <input type="text" class="form-control" name="celular" placeholder="Numero de telefono">
+              <div class="form-group">
+                <label for="nombre" class="col-md-3 control-label">Numero de telefono:</label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" name="celular" placeholder="Numero de telefono">
+                </div>
               </div>
-            </div>
 
 
-            <div class="form-group">
-              <label for="password" class="col-md-3 control-label">Password</label>
-              <div class="col-md-9">
-                <input type="password" class="form-control" name="password" placeholder="Password">
+              <div class="form-group">
+                <label for="password" class="col-md-3 control-label">Password</label>
+                <div class="col-md-10">
+                  <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
               </div>
-            </div>
 
-
-
-            <div class="form-group">
-              <div class="col-md-offset-3 col-md-9">
-                <button id="regBtn" name="regBtn" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Registrar</button>
+              <div class="form-group">
+                <div class="col-md-offset-3 col-md-10">
+                  <br>
+                  <button id="regBtn" name="regBtn" type="submit" class="btn btn-info btn-rounded"><i class="icon-hand-right"></i>Registrar</button>
+                </div>
               </div>
-            </div>
+            </center>
           </form>
         </div>
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger btn-rounded" data-bs-dismiss="modal">Close</button>
         </div>
 
       </div>
     </div>
   </div>
+  <!--Final del modal-->
 
 
+  <script type="text/javascript">
+    //java
+
+    $("#form").bootstrapValidator({
+
+      feedbackIcons: {
+
+        valid: 'glyphicon glyphicon-ok',
+
+        invalid: 'glyphicon glyphicon-remove',
+
+        validating: 'glyphicon glyphicon-refresh'
+
+      },
+
+      fields: {
+
+        username: {
+
+          validators: {
+
+            notEmpty: {
+
+              message: 'Debes ingresar tu nombre de usuario.'
+
+            },
+
+            stringLength: {
+
+              min: 5,
+
+              max: 15,
+
+              message: 'Tu nombre de usuario debe de tener por lo menos 5 caracteres de longitud y 10 como máximo.'
+
+            }
+
+          }
+
+        },
+
+
+
+        email: {
+
+          validators: {
+
+            emailAddress: {
+
+              message: 'El correo electrónico debe ser válido.'
+
+            },
+
+            notEmpty: {
+
+              message: 'Ingresa tu correo electrónico.'
+
+            }
+
+          }
+
+        },
+
+        celular: {
+
+          message: 'Ingrese Su Número De Celular',
+
+          validators: {
+
+            notEmpty: {
+
+              message: 'Ingrese Su Número De Celular'
+            },
+
+            regexp: {
+
+              regexp: /^[0-9]+$/,
+
+              message: 'El Número de Celular Solo Puede Contener Digitos'
+            },
+
+            stringLength: {
+
+              min: 10,
+
+              max: 10,
+
+              message: 'Tu numero debe ser de 10 digitos'
+
+            }
+
+          }
+
+
+        }
+
+      }
+
+    });
+  </script>
 
 </body>
 
 </html>
-
-
-<script type="text/javascript">
-  //java
-
-  $("#form").bootstrapValidator({
-
-    feedbackIcons: {
-
-      valid: 'glyphicon glyphicon-ok',
-
-      invalid: 'glyphicon glyphicon-remove',
-
-      validating: 'glyphicon glyphicon-refresh'
-
-    },
-
-    fields: {
-
-      username: {
-
-        validators: {
-
-          notEmpty: {
-
-            message: 'Debes ingresar tu nombre de usuario.'
-
-          },
-
-          stringLength: {
-
-            min: 5,
-
-            max: 15,
-
-            message: 'Tu nombre de usuario debe de tener por lo menos 5 caracteres de longitud y 10 como máximo.'
-
-          }
-
-        }
-
-      },
-
-
-
-      email: {
-
-        validators: {
-
-          emailAddress: {
-
-            message: 'El correo electrónico debe ser válido.'
-
-          },
-
-          notEmpty: {
-
-            message: 'Ingresa tu correo electrónico.'
-
-          }
-
-        }
-
-      },
-
-      celular: {
-
-        message: 'Ingrese Su Número De Celular',
-
-        validators: {
-
-          notEmpty: {
-
-            message: 'Ingrese Su Número De Celular'
-          },
-
-          regexp: {
-
-            regexp: /^[0-9]+$/,
-
-            message: 'El Número de Celular Solo Puede Contener Digitos'
-          },
-
-          stringLength: {
-
-            min: 10,
-
-            max: 10,
-
-            message: 'Tu numero debe ser de 10 digitos'
-
-          }
-
-        }
-
-
-      }
-
-    }
-
-  });
-</script>
