@@ -49,7 +49,12 @@ if (isset($_POST['iniciar-session'])) {
 			}
 		} else {
 			echo "<div class='alert alert-danger'>
-			<strong><h4>Ha surgido un Error<br>Verifica las credenciales de Acceso!</strong></div>";
+			<strong>
+			<center>
+			<h5>Ha surgido un Error<br>Verifica las credenciales de Acceso!</h5>
+			</center>
+			</strong>
+			</div>";
 		}
 	}
 }
@@ -67,7 +72,7 @@ if (isset($_POST['iniciar-session'])) {
 </head>
 
 <body style="background: -webkit-linear-gradient(left, #5D00B9, #aa63f1); background: linear-gradient(to right, #5D00B9, #aa63f1); overflow-x: hidden;">
-	<br><br><br><br><br><br><br>
+	<br><br><br><br>
 	<div class="container">
 		<div class="row gx-2 justify-content-center">
 
