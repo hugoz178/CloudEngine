@@ -18,15 +18,16 @@ $date = date("d-M-Y");
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cloud Engine</title>
 </head>
 
-<body style="overflow-x:hidden; background-color:#000000;">
+<body style="overflow-x:hidden;">
 
   <?php
   if (isset($_GET['id'])) {
@@ -48,7 +49,7 @@ $date = date("d-M-Y");
                   </button>
                 </div>
                 <ul class="nav navbar-nav">
-                  <h1>Cloud Engine</h1>
+                  <h1 style="color:#5D00B9">Cloud Engine</h1>
                 </ul>
 
               </div>
@@ -59,7 +60,7 @@ $date = date("d-M-Y");
                 <center>
                   <h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $camp ?></h2>
                 </center>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                <a type="button" class="btn-close" data-bs-dismiss="offcanvas" style='color:#ffffff;'><i class="fas fa-times fa-2x"></i></a>
               </div>
               <div class="offcanvas-body">
                 <div class="btn-group-vertical" style="width:280px">
@@ -71,7 +72,8 @@ $date = date("d-M-Y");
                   </a><br>
                   <a href="configuracion.php" class="btn">
                     <h2 style="color:#5D00B9">Configuración</h2>
-                  </a><br> <a href="logout.php" class="btn">
+                  </a><br>
+                  <a href="logout.php" class="btn">
                     <h2 style="color:#5D00B9">Cerrar sesión</h2>
                   </a>
                 </div>
@@ -103,14 +105,14 @@ $date = date("d-M-Y");
                 <center>
                   <h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $camp ?></h2>
                 </center>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                <a type="button" class="btn-close" data-bs-dismiss="offcanvas" style='color:#ffffff;'><i class="fas fa-times fa-2x"></i></a>
               </div>
               <div class="offcanvas-body">
                 <div class="btn-group-vertical" style="width:280px">
                   <a href="vista_usuario.php" class="btn">
                     <h2 style="color:#5D00B9">Inicio</h2>
                   </a><br>
-                  <a href="" class="btn">
+                  <a href="ver_carrito.php" class="btn">
                     <h2 style="color:#5D00B9">Mi carrito</h2>
                   </a><br>
                   <a href="configuracion.php" class="btn">
@@ -128,188 +130,330 @@ $date = date("d-M-Y");
       }
       ?>
 
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card" style="background-color:#000000; border: 1px solid #5D00B9">
-            <div class="card-body">
-              <?php
-              $consultaA = $cnx->query("SELECT * FROM software WHERE idSoft='$id'");
-              if ($ver = mysqli_fetch_array($consultaA)) {   ?>
-              <form action="car.php?idS=<?php echo $ver['idSoft'] ?>" method="POST">
-                <h1 class="card-tittle display-6 text-white">
-                  <?php echo $ver['nombreSoft'] ?>
-                </h1>
-                <?php echo '<img src="'.$ver['fotoSoft']. '" class="card-img-top" alt="photo" style="width:300px; height:300px;">' ?>
-                <p class="card-text text-white">
-                  <?php echo $ver['descripcionSoft'] ?>
-                </p>
-                <p class="card-text text-white">
-                  Precio del software: <?php echo $ver['costoSoft'] ?>
-                </p>
-                <p class="card-text text-white">
-                  Categoria del software <?php echo $ver['categoriaSoft'] ?>
-                </p>
+      <div class="d-none d-lg-block">
+        <div class="container">
+          <div class="row gx-2 ">
+
+            <div class="col-md-4">
+              <div class="p-5 text-center bg-light">
                 <?php
-                $cons = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
-                if ($cons) {
-                  if ($_SESSION['username'] == 'hugoz178') {
-                    if ($verBA = mysqli_fetch_array($cons)) {
-                      
-                    }
-                  }else{
+                $consultaA = $cnx->query("SELECT * FROM software WHERE idSoft='$id'");
+                if ($ver = mysqli_fetch_array($consultaA)) {   ?>
+                  <form action="car.php?idS=<?php echo $ver['idSoft'] ?>" method="POST">
+                    <h1 class="card-tittle">
+                      <?php echo $ver['nombreSoft'] ?>
+                    </h1>
+                    <?php echo '<img src="' . $ver['fotoSoft'] . '" class="card-img-top" alt="photo" style="width:200px; height:200px;">' ?>
+                    <br><br>
+                    <p class="card-text" style="font-size: 15px;">
+                      <?php echo $ver['descripcionSoft'] ?>
+                    </p>
+                    <p class="card-text" style="font-size: 15px;">
+                      Precio del software: <?php echo $ver['costoSoft'] ?>
+                    </p>
+                    <p class="card-text" style="font-size: 15px;">
+                      Categoria del software <?php echo $ver['categoriaSoft'] ?>
+                    </p>
+                    <?php
+                    $cons = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
                     if ($cons) {
-                      $boton = $cnx->query("SELECT idS, usuario FROM compras WHERE usuario = '$camp' AND idS = '$id'");
-                            if ($busqueda = mysqli_fetch_array($boton)) {
-                                $username = $busqueda['usuario'];
-                                $idsoft = $busqueda['idS'];
-                                if ($username and $idsoft == true) {
-                                    echo '<p class="text-white">Ya compraste este producto</p>';
+                      if ($_SESSION['username'] == 'hugoz178') {
+                        if ($verBA = mysqli_fetch_array($cons)) {
+                        }
+                      } else {
+                        if ($cons) {
+                          $boton = $cnx->query("SELECT idS, usuario FROM compras WHERE usuario = '$camp' AND idS = '$id'");
+                          if ($busqueda = mysqli_fetch_array($boton)) {
+                            $username = $busqueda['usuario'];
+                            $idsoft = $busqueda['idS'];
+                            if ($username and $idsoft == true) {
+                              echo '<p>Ya compraste este producto</p>';
+                            }
+                          } else {
+                            echo '<button class="btn btn-primary">Agregar al carrito</button>';
+                          }
+                        }
+                      }
+                    }
+                    ?>
+                  </form>
+                <?php } ?>
+              </div>
+            </div>
+
+            <div class="col-md-8">
+              <div class="p-5 text-center bg-light">
+                <h1>Comentarios</h1>
+                <p style="font-size: 20px;">Escribe tu comentario: </p>
+                <?php
+                if (isset($_POST['subircom'])) {
+                  if (!empty($_POST['comentario'])) {
+                    mysqli_query($cnx, "INSERT into comentarios values ( ' ', '$id', '$camp', '$date', '$time', '$_POST[comentario]')");
+                  }
+                }
+                ?>
+                <form method="POST" action="<?php $_SERVER['PHP_SELF'] ?>">
+                  <textarea id="comentario" name="comentario" class="form-control" placeholcer="ingresa comentario" row="5" maxlength="100"></textarea>
+                  <br>
+                  <input type="submit" class="form-control btn btn-primary" name="subircom" value="Enviar comentario">
+                </form>
+                <br>
+                <?php
+                $conCom = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
+                if ($conCom) {
+                  if ($_SESSION['username'] == 'hugoz178') {
+                    $comA = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
+                    if ($comA) {
+                ?>
+                      <div id="Layer1" style="width:100%; height:550px; overflow: auto; border: 1px solid #ffffff;">
+                        <center>
+                          <table>
+                            <br>
+                            <tr>
+                              <?php
+                              $con = 0;
+                              $consCA = $cnx->query("SELECT * FROM comentarios WHERE idSoft='$id' ORDER BY comSoft asc");
+                              while ($verCA = mysqli_fetch_array($consCA)) {
+                              ?>
+                                <td>
+                                  <?php echo '
+                                  <div class="card" style="width:250px; border: 1px solid #5D00B9">
+                                  <div class="card-body">
+                                    <h4 class="text-white">' . $verCA['username'] . ' </h4>
+                                    <p class="text-white"><small>' . $verCA['fechaCom'] . '</small></p>
+                                    <p class="text-white"><small>' . $verCA['comSoft'] . '</small></p>
+                                    <a type="button" class="btn" style="background-color:#5D00B9; color: white;" href="BorrarComentario.php?id=' . $verCA['idCom'] . '">Borrar comentario</a>
+                                  </div>
+                                  </div>';
+                                  ?>
+                                </td>
+                              <?php
+                                $con = $con + 1;
+                                if ($con == 2) {
+                                  echo "</tr>
+													      <tr>";
+                                  $con = 0;
                                 }
-                                }else{
-                                      echo '<button class="btn btn-primary">Agregar al carrito</button>';
+                              }
+                              ?>
+                            </tr>
+                          </table>
+                        </center>
+                      </div>
+                    <?php
+                    }
+                  } else {
+                    $comU = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
+                    if ($comU) {
+                    ?>
+                      <div id="Layer1" style="width:100%; height:200px; overflow: auto; border: 1px solid #ffffff;">
+                        <center>
+                          <table>
+                            <br>
+                            <tr>
+                              <?php
+                              $con = 0;
+                              $consCS = $cnx->query("SELECT * FROM comentarios WHERE idSoft='$id'");
+                              while ($verCS = mysqli_fetch_array($consCS)) {
+                              ?>
+                                <td>
+                                  <?php echo '
+													<div class="card" style="width:250px; border: 1px solid #5D00B9">
+													<div class="card-body">
+                          <h4>' . $verCS['username'] . '</h4>
+                          <p><small>' . $verCS['fechaCom'] . '</small></p>
+                          <p>' . $verCS['comSoft'] . '</p>
+													</div>
+												</div>';
+                                  ?>
+                                </td>
+                              <?php
+                                $con = $con + 1;
+                                if ($con == 2) {
+                                  echo "</tr>
+													<tr>";
+                                  $con = 0;
                                 }
+                              }
+                              ?>
+                            </tr>
+                          </table>
+                        </center>
+                      </div>
+                <?php
                     }
                   }
                 }
                 ?>
-                </form>
-              <?php } ?>
-            </div>
-            
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div class="card" style="background-color:#000000; border: 1px solid #5D00B9">
-            <div class="card-body">
-              <div class="container mt-3">
-                <h1 class="display-6 text-white">Comentarios</h1>
-                <p class="text-white">Escribe tu comentario: </p>
-                                  <?php                       
-                                      if (isset($_POST['subircom'])) 
-                                      {
-                                        if (!empty($_POST['comentario']))
-                                        {
-                                          mysqli_query($cnx,"INSERT into comentarios values
-                                            ( ' ',
-                                              '$id',
-                                              '$camp',
-                                              '$date',
-                                              '$time',
-                                              '$_POST[comentario]')");
-                                        }
-                                      }
-
-                 
-                                  ?>   
-                <form method="POST" action="<?php $_SERVER['PHP_SELF'] ?>">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <label id="comentario" class="text-white">Comentario</label>
-                      <textarea id="comentario" name="comentario" class="form-control" placeholcer="ingresa comentario" row="5" style="height:60px; resize: none; background-color: #2D2D2D; color:white;" maxlength="100"></textarea>
-                      <input type="submit" class="form-control btn" name="subircom" value="Enviar comentario" style="background-color:#5D00B9; color: white;">
-                    </div>
-                  </div>
-                </form>
               </div>
-
-              <?php
-              $conCom = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
-              if ($conCom) {
-                if ($_SESSION['username'] == 'hugoz178') {
-                  $comA = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
-                  if ($comA) {
-              ?>
-                    <div class="container mt-3">
-                      <div class="container-fluid" id="Layer1" style="width:100%; height:480px; overflow: scroll; border: 1px solid white;">
-                        <div class="media">
-                          <div class="row">
-                            <?php
-
-                            $consCA = $cnx->query("SELECT * FROM comentarios WHERE idSoft='$id' ORDER BY comSoft asc");
-                            while ($verCA = mysqli_fetch_array($consCA)) {
-                            ?>
-
-                              <div class="col-sm-10">
-                                <h4 class="text-white"><?php echo $verCA['username'] ?></h4>
-                                <p class="text-white"><small><?php echo $verCA['fechaCom'] ?></small></p>
-                                <p class="text-white"><small><?php echo $verCA['comSoft'] ?></small>
-                                <p>
-                                  <?php echo '<a type="button" class="btn" style="background-color:#5D00B9; color: white;" href="BorrarComentario.php?id=' . $verCA['idCom'] . '">Borrar comentario</a>' ?>
-                                <?php
-                              }
-                                ?>
-
-                              </div>
-
-                          </div>
-
-                        </div> <!-- Cierre Media -->
-                      </div><!-- CIERRE SCROLL -->
-                    </div>
-                  <?php
-                  }
-                } else {
-                  $comU = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
-                  if ($comU) {
-                  ?>
-                    <!-- VER COMENTARIOS VISTA USUARIO -->
-                    <div class="container mt-3">
-                      <div class="container-fluid" id="Layer1" style="width:100%; height:480px; overflow: scroll; border: 1px solid white">
-                        <div class="media">
-                          <div class="row">
-
-                            <?php
-                            $consCS = $cnx->query("SELECT * FROM comentarios WHERE idSoft='$id'");
-                            while ($verCS = mysqli_fetch_array($consCS)) {
-                            ?>
-                              <div class="col-sm-10">
-                                <h4 class="text-white"><?php echo $verCS['username'] ?></h4>
-                                <p class="text-white"><small><?php echo $verCS['fechaCom'] ?></small></p>
-                                <p class="text-white"><?php echo $verCS['comSoft'] ?>
-                                <p>
-                                <?php
-                              }
-                                ?>
-                              </div>
-
-                          </div>
-
-                        </div> <!-- Cierre Media -->
-                      </div><!-- CIERRE SCROLL -->
-                    </div>
-              <?php
-                  }
-                }
-              }
-              ?>
-
-
-            </div><!-- Fin de card body -->
+            </div>
           </div>
         </div>
       </div>
+      <div class="d-lg-none">
+        <div class="container">
+          <div class="row gx-2 ">
 
+            <div class="col-md-4">
+              <div class="p-5 text-center bg-light">
+                <?php
+                $consultaA = $cnx->query("SELECT * FROM software WHERE idSoft='$id'");
+                if ($ver = mysqli_fetch_array($consultaA)) {   ?>
+                  <form action="car.php?idS=<?php echo $ver['idSoft'] ?>" method="POST">
+                    <h1 class="card-tittle">
+                      <?php echo $ver['nombreSoft'] ?>
+                    </h1>
+                    <?php echo '<img src="' . $ver['fotoSoft'] . '" class="card-img-top" alt="photo" style="width:200px; height:200px;">' ?>
+                    <br><br>
+                    <p class="card-text" style="font-size: 15px;">
+                      <?php echo $ver['descripcionSoft'] ?>
+                    </p>
+                    <p class="card-text" style="font-size: 15px;">
+                      Precio del software: <?php echo $ver['costoSoft'] ?>
+                    </p>
+                    <p class="card-text" style="font-size: 15px;">
+                      Categoria del software <?php echo $ver['categoriaSoft'] ?>
+                    </p>
+                    <?php
+                    $cons = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
+                    if ($cons) {
+                      if ($_SESSION['username'] == 'hugoz178') {
+                        if ($verBA = mysqli_fetch_array($cons)) {
+                        }
+                      } else {
+                        if ($cons) {
+                          $boton = $cnx->query("SELECT idS, usuario FROM compras WHERE usuario = '$camp' AND idS = '$id'");
+                          if ($busqueda = mysqli_fetch_array($boton)) {
+                            $username = $busqueda['usuario'];
+                            $idsoft = $busqueda['idS'];
+                            if ($username and $idsoft == true) {
+                              echo '<p>Ya compraste este producto</p>';
+                            }
+                          } else {
+                            echo '<button class="btn btn-primary">Agregar al carrito</button>';
+                          }
+                        }
+                      }
+                    }
+                    ?>
+                  </form>
+                <?php } ?>
+              </div>
+            </div>
+
+            <div class="col-md-8">
+              <div class="p-5 text-center bg-light">
+                <h1>Comentarios</h1>
+                <p style="font-size: 20px;">Escribe tu comentario: </p>
+                <?php
+                if (isset($_POST['subircom'])) {
+                  if (!empty($_POST['comentario'])) {
+                    mysqli_query($cnx, "INSERT into comentarios values ( ' ', '$id', '$camp', '$date', '$time', '$_POST[comentario]')");
+                  }
+                }
+                ?>
+                <form method="POST" action="<?php $_SERVER['PHP_SELF'] ?>">
+                  <textarea id="comentario" name="comentario" class="form-control" placeholcer="ingresa comentario" row="5" maxlength="100"></textarea>
+                  <br>
+                  <input type="submit" class="form-control btn btn-primary" name="subircom" value="Enviar comentario">
+                </form>
+                <br>
+                <?php
+                $conCom = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
+                if ($conCom) {
+                  if ($_SESSION['username'] == 'hugoz178') {
+                    $comA = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
+                    if ($comA) {
+                ?>
+                      <div id="Layer1" style="width:100%; height:550px; overflow: auto; border: 1px solid #ffffff;">
+                        <center>
+                          <table>
+                            <br>
+                            <tr>
+                              <?php
+                              $con = 0;
+                              $consCA = $cnx->query("SELECT * FROM comentarios WHERE idSoft='$id' ORDER BY comSoft asc");
+                              while ($verCA = mysqli_fetch_array($consCA)) {
+                              ?>
+                                <td>
+                                  <?php echo '
+                                  <div class="card" style="width:250px; border: 1px solid #5D00B9">
+                                  <div class="card-body">
+                                    <h4 class="text-white">' . $verCA['username'] . ' </h4>
+                                    <p class="text-white"><small>' . $verCA['fechaCom'] . '</small></p>
+                                    <p class="text-white"><small>' . $verCA['comSoft'] . '</small></p>
+                                    <a type="button" class="btn" style="background-color:#5D00B9; color: white;" href="BorrarComentario.php?id=' . $verCA['idCom'] . '">Borrar comentario</a>
+                                  </div>
+                                  </div>';
+                                  ?>
+                                </td>
+                              <?php
+                                $con = $con + 1;
+                                if ($con == 1) {
+                                  echo "</tr>
+													      <tr>";
+                                  $con = 0;
+                                }
+                              }
+                              ?>
+                            </tr>
+                          </table>
+                        </center>
+                      </div>
+                    <?php
+                    }
+                  } else {
+                    $comU = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
+                    if ($comU) {
+                    ?>
+                      <div id="Layer1" style="width:100%; height:200px; overflow: auto; border: 1px solid #ffffff;">
+                        <center>
+                          <table>
+                            <br>
+                            <tr>
+                              <?php
+                              $con = 0;
+                              $consCS = $cnx->query("SELECT * FROM comentarios WHERE idSoft='$id'");
+                              while ($verCS = mysqli_fetch_array($consCS)) {
+                              ?>
+                                <td>
+                                  <?php echo '
+													<div class="card" style="width:245px; border: 1px solid #5D00B9">
+													<div class="card-body">
+                          <h4>' . $verCS['username'] . '</h4>
+                          <p><small>' . $verCS['fechaCom'] . '</small></p>
+                          <p>' . $verCS['comSoft'] . '</p>
+													</div>
+												</div>';
+                                  ?>
+                                </td>
+                              <?php
+                                $con = $con + 1;
+                                if ($con == 1) {
+                                  echo "</tr>
+													<tr>";
+                                  $con = 0;
+                                }
+                              }
+                              ?>
+                            </tr>
+                          </table>
+                        </center>
+                      </div>
+                <?php
+                    }
+                  }
+                }
+                ?>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
   <?php
     }
   }
-
   ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 
 </html>

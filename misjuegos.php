@@ -62,15 +62,15 @@ if (isset($_POST['opBtn'])) {
 	<meta charset="utf-8">
 	<title>Cloud Engine</title>
 	<!-- icono de la pagina -->
-	<link rel="icon" href="images/icons/agenda.png">
+	<link rel="stylesheet" href="css/estilo.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script> 
+	<script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
 
 
 
 </head>
 
-<body style="overflow-x:hidden; background-color:#000000;">
+<body style="overflow-x:hidden;">
 	<nav class="navbar navbar-inverse" style="background-color:#000000;">
 		<div class="container-fluid ">
 			<div class="navbar-header">
@@ -91,7 +91,7 @@ if (isset($_POST['opBtn'])) {
 			<center>
 				<h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $_SESSION['username'] ?></h2>
 			</center>
-			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" style='color:#5D00B9;'></button>
+			<a type="button" class="btn-close" data-bs-dismiss="offcanvas" style='color:#ffffff;'><i class="fas fa-times fa-2x"></i></a>
 		</div>
 		<div class="offcanvas-body">
 			<div class="btn-group-vertical" style="width:280px">
@@ -112,7 +112,6 @@ if (isset($_POST['opBtn'])) {
 				$result = mysqli_query($cnx, $sql);
 				while ($res = mysqli_fetch_array($result)) {
 					$saldo = $res['saldo'];
-
 				}
 				if ($saldo == 0) {
 					echo '
@@ -140,70 +139,63 @@ if (isset($_POST['opBtn'])) {
 	</div>
 
 
-	<div class="row">
-		<div class="col-md-2"> </div>
-		<div class="col-md-8">
-			<div class="card" style="height:900px; background-color:#000000;">
-				<div class="card-body">
-					<center>
-						<table>
-							<br>
-								<tr>
-									<?php
-										$con=0;
-										$sql3 = $cnx->query("SELECT * FROM compras WHERE usuario='$camp'");
-										while ($row=mysqli_fetch_array($sql3)) {
-
-										?>
-											<td>
-												<?php echo '
-													<div class="card card-cascade narrower" style="background-color:#050503;" >
-												  <div class="view view-cascade overlay"">
-												  <center>
-												  <img src="'.$row['fotoSoft'].'" class="card-img-top" alt="photo" style="width:500px; height:500px;">
-												    </center>
-												    <a>
-												      <div class="mask rgba-white-slight"></div>
-												    </a>
-												  </div>
-												  <div class="card-body card-body-cascade">
-												    <h5 class="text-white pb-2 pt-1"><i class="fas fa-shopping-bag"></i>  '.$row['categoriaSoft'].'</h5>
-												    <h4 class="font-weight-bold card-title text-white">'.$row['nombreSoft'].'</h4>
-												    <p class="card-text text-white">'.$row['descripcionSoft'].'</p>
-												    <a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id='.$row['idS'].'">Obervar Software</a>
-												  </div>
-												</div>';
-													?>
-											</td>
-												<?php
-												$con=$con+1;
-												if($con==2){
-													echo "</tr>
-													<tr>";
-													$con=0;
-												}
-											}
-									?>  
-								</tr>
-						</table>
-					</center>
 
 
-
-				</div>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-2 col-md-12">
 			</div>
 
-		</div>
-		<div class="col-md-2"> </div>
+			<div class="col-lg-8 col-md-6">
+				<section>
+					<!--for demo wrap-->
+					<h1 style="font-size: 30px; color: #fff; text-transform: uppercase; font-weight: 300; text-align: center; margin-bottom: 15px;">Tus productos</h1>
+					<div class="tbl-header">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<thead>
+								<tr>
+									<th>Foto</th>
+									<th>Nombre</th>
+									<th>Descripcion</th>
+									<th>categoria</th>
+									<th>precio</th>
+									<th>Ver Producto</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<div class="tbl-content">
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tbody>
+								<?php
+								$sql3 = $cnx->query("SELECT * FROM compras WHERE usuario='$camp'");
+								while ($row = mysqli_fetch_array($sql3)) {
+									echo '
+                                        <tr>
+                                        <td> <img src="' . $row['fotoSoft'] . '" width="50px" heigth="50px"></td>
+                                        <td>' . $row['nombreSoft'] . '</td>
+                                        <td>' . $row['descripcionSoft'] . '</td>
+                                        <td>' . $row['categoriaSoft'] . '</td>
+                                        <td>$' . $row['costoSoft'] . '</td>
+                                        <td><a type="button" class="btn btn-success" href="infsoftware.php?id=' . $row['idS'] . '"><i class="fas fa-angle-double-right"></i></a></td>
+                                        </tr>
+                                        ';
+								} ?>
+							</tbody>
+						</table>
+					</div>
+				</section>
+			</div>
 
+			<div class="col-lg-2 col-md-6">
+
+			</div>
+		</div>
 	</div>
 
 
-
-
-
 	<div class="modal" id="myModal">
-		<div class="modal-dialog modal-xl">
+		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 
 				<!-- Modal Header -->
@@ -214,20 +206,30 @@ if (isset($_POST['opBtn'])) {
 
 				<!-- Modal body -->
 				<div class="modal-body">
-					<form id="form" name="form" class="form-horizontal" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
+					<center>
+						<form id="form" name="form" class="form-horizontal" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
 
-						<div class="form-group">
-							<input type="text" name="asunto" id="asunto" placeholder="Escribe el asunto">
-						</div>
-						<div class="form-group">
-							<textarea placeholder="Escribe tu opinon" name="opinion" id="opinion"></textarea>
-						</div>
-						<div class="form-group">
-							<button id="opBtn" name="opBtn" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Enviar opinon</button>
-						</div>
-						<div class="form-group"></div>
+							<div class="form-group">
+								<label for="usuario" class="col-md-3 control-label">Asunto del mensaje</label>
+								<div class="col-md-11">
+									<input type="text" name="asunto" id="asunto" placeholder="Escribe el asunto">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="usuario" class="col-md-3 control-label">Opinion</label>
+								<div class="col-md-11">
+									<textarea cols="40" rows="5" placeholder="Escribe tu opinon" name="opinion" id="opinion"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-md-offset-3 col-md-10">
+									<br>
+									<button id="opBtn" name="opBtn" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Enviar opinon</button>
+								</div>
+							</div>
+						</form>
+					</center>
 
-					</form>
 				</div>
 
 				<!-- Modal footer -->
@@ -239,79 +241,79 @@ if (isset($_POST['opBtn'])) {
 		</div>
 	</div>
 
-<script type="text/javascript">
+	<script src="funcion.js"></script>
 
-//java
+	<script type="text/javascript">
+		//java
 
-$( "#form" ).bootstrapValidator({
+		$("#form").bootstrapValidator({
 
-   feedbackIcons: {
- 
-     valid: 'glyphicon glyphicon-ok',
- 
-     invalid: 'glyphicon glyphicon-remove',
- 
-     validating: 'glyphicon glyphicon-refresh'
- 
-   },
- 
-   fields: {
- 
-     asunto: {
- 
-       validators: {
- 
-         notEmpty: {
- 
-           message: 'Debes de escribir el asunto de tu solicitud'
- 
-         },
+			feedbackIcons: {
 
-         stringLength: {
- 
-           min: 5,
+				valid: 'glyphicon glyphicon-ok',
 
-           max: 20,
- 
-           message: 'Unicamente se permite 20 caracteres como maximo y un minimo de 5'
- 
-         }
- 
-       }
- 
-     },
+				invalid: 'glyphicon glyphicon-remove',
+
+				validating: 'glyphicon glyphicon-refresh'
+
+			},
+
+			fields: {
+
+				asunto: {
+
+					validators: {
+
+						notEmpty: {
+
+							message: 'Debes de escribir el asunto de tu solicitud'
+
+						},
+
+						stringLength: {
+
+							min: 5,
+
+							max: 20,
+
+							message: 'Unicamente se permite 20 caracteres como maximo y un minimo de 5'
+
+						}
+
+					}
+
+				},
 
 
 
-     opinion: {
- 
-       validators: {
+				opinion: {
 
-        notEmpty: {
- 
-           message: 'Debes de introducir una opinion'
- 
-         },
- 
-         stringLength: {
- 
-           min: 10,
+					validators: {
 
-           max: 50,
- 
-           message: 'Unicamente se permite 50 caracteres como maximo y un minimo de 10'
- 
-         }
- 
-       }
- 
-     }   
+						notEmpty: {
 
-  }
- 
-});
+							message: 'Debes de introducir una opinion'
 
-</script>
+						},
+
+						stringLength: {
+
+							min: 10,
+
+							max: 50,
+
+							message: 'Unicamente se permite 50 caracteres como maximo y un minimo de 10'
+
+						}
+
+					}
+
+				}
+
+			}
+
+		});
+	</script>
 
 
 </body>

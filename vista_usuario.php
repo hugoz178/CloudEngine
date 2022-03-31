@@ -138,6 +138,11 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 	}
 	?>
 
+<br>
+<center>
+	<h1>Catalogo de Software</h1>
+</center>
+<hr>
 
 	<div class="d-none d-lg-block">
 		<div class="container">
@@ -157,7 +162,7 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 										<div class="card card-cascade narrower" style="background-color:#050503" >
 										  <div class="view view-cascade overlay"">
 										    <center>
-											  <img src="' . $row['fotoSoft'] . '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
+											  <img src="' . $row['fotoSoft'] . '" class="card-img-top" alt="photo" style="width:200px; height:200px;">
 										    </center>
 												<a>
 												    <div class="mask rgba-white-slight"></div>
@@ -174,7 +179,7 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 								</td>
 							<?php
 								$con = $con + 1;
-								if ($con == 3) {
+								if ($con == 4) {
 									echo "</tr>
 													<tr>";
 									$con = 0;

@@ -149,11 +149,11 @@ if ($camp == null || $camp == '') {
             <div class="col-lg-1 col-md-12">
             <?php
       if (isset($_GET['error'])) {
-        echo "<center><div class='alert alert-danger'>Error al Comprar</div></center><br>";
+        echo "<center><div class='alert alert-danger'><i class='fas fa-times'></i></div></center><br>";
       }
     
       if (isset($_GET['correcto'])) {
-       echo "<center><div class='alert alert-success'>Compra con exito</div></center><br>";
+       echo "<center><div class='alert alert-success'><i class='fas fa-check'></i></div></center><br>";
       }
       ?>
             </div>
@@ -161,7 +161,7 @@ if ($camp == null || $camp == '') {
             <div class="col-lg-8 col-md-6">
                 <section>
                     <!--for demo wrap-->
-                    <h1>Carrito de compras</h1>
+                    <h1 style="font-size: 30px; color: #fff; text-transform: uppercase; font-weight: 300; text-align: center; margin-bottom: 15px;">Carrito de compras</h1>
                     <div class="tbl-header">
                         <table cellpadding="0" cellspacing="0" border="0">
                             <thead>
