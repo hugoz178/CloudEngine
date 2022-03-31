@@ -153,22 +153,22 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 						?>
 							<td>
 								<?php echo '
-													<div class="card card-cascade narrower" style="background-color:#050503;" >
-												  <div class="view view-cascade overlay"">
-												  <center>
-												  <img src="' . $row['fotoSoft'] . '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
-												    </center>
-												    <a>
-												      <div class="mask rgba-white-slight"></div>
-												    </a>
-												  </div>
-												  <div class="card-body card-body-cascade">
+										<div class="card card-cascade narrower" style="background-color:#050503" >
+										  <div class="view view-cascade overlay"">
+										    <center>
+											  <img src="' . $row['fotoSoft'] . '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
+										    </center>
+												<a>
+												    <div class="mask rgba-white-slight"></div>
+												</a>
+										   </div>
+												<div class="card-body card-body-cascade">
 												    <h5 class="text-white pb-2 pt-1"><i class="fas fa-shopping-bag"></i>  ' . $row['categoriaSoft'] . '</h5>
 												    <h4 class="font-weight-bold card-title text-white">' . $row['nombreSoft'] . '</h4>
 												    <p class="card-text text-white">' . $row['descripcionSoft'] . '</p>
 												    <a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id=' . $row['idSoft'] . '">Obervar Software</a>
 												  </div>
-												</div>';
+												</div>&nbsp';
 								?>
 							</td>
 						<?php
