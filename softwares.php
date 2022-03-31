@@ -121,7 +121,9 @@ if (isset($_POST['actualizar'])) {
 			</div>
 		</div>
 	</div>
-<br>
+	<br>
+
+	<div class="d-none d-lg-block">
 	<div class="container">
 		<div class="row gx-4">
 
@@ -222,7 +224,109 @@ if (isset($_POST['actualizar'])) {
 
 		</div>
 	</div>
+	</div>
+	<div class="d-lg-none">
+	<div class="container">
+		<div class="row gx-4">
 
+			<div class="col-md-4">
+				<br><br>
+				<form class="login form-group" method="post" enctype="multipart/form-data">
+					<h1 class="login-title"><span class="glyphicon glyphicon-tasks"></span> Softwares</h1>
+
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+						<input id="idSoft" type="text" class="form-control input-lg" placeholder="idSoft" name="idSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['idSoft'] ?>">
+					</div><br>
+
+
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+						<input id="nombreSoft" type="text" class="form-control input-lg" placeholder="Nombre del software" name="nombreSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['nombreSoft'] ?>">
+					</div><br>
+
+
+					<div class="input-group">
+						<span class="input-group-addon"></span>
+						<input class="btn form-control input-lg" type="file" name="foto" id="foto" accept="image/png, .jpeg, .jpg">
+					</div><br>
+
+					<div class="input-group">
+						<input id="descripcionSoft" type="text" class="form-control input-lg" placeholder="Descripcion del software" name="descripcionSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['descripcionSoft'] ?>">
+					</div><br>
+
+
+					<div class="input-group">
+						<input id="costoSoft" type="text" class="form-control input-lg" placeholder="Precio del softwareftware" name="costoSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['costoSoft'] ?>">
+					</div><br>
+
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+						<input id="categoriaSoft" type="text" class="form-control input-lg" placeholder="Categoria" name="categoriaSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['categoriaSoft'] ?>">
+					</div><br>
+
+					<center>
+						<button type="submit" class="btn" style="background-color:#5D00B9" name="registrar"><i class='fas fa-plus-square' style='color:white; font-size:26px;'></i></button>
+
+						<button type="submit" class="btn" style="background-color:#5D00B9" name="eliminar"><i class="material-icons" style='color:white; font-size:26px'>delete</i></button>
+
+						<button type="submit" class="btn" style="background-color:#5D00B9" name="buscar"><i class='fas fa-search' style='color:white; font-size:26px'></i></button>
+
+						<button type="submit" class="btn" style="background-color:#5D00B9" name="actualizar"><i class="material-icons" style='color:white; font-size:26px'>edit</i></button>
+					</center>
+				</form>
+			</div>
+
+			<div class="col-md-8">
+				<div id="Layer1" style="width:100%; height:550px; overflow: auto; border: 1px solid #ffffff;">
+					<center>
+						<table>
+							<br>
+							<tr>
+								<?php
+								$con = 0;
+								$sql = $cnx->query("SELECT * FROM software");
+								while ($row = mysqli_fetch_array($sql)) {
+
+								?>
+									<td>
+										<?php echo '
+											<div class="card card-cascade narrower" style="background-color:#050503;" >
+												<div class="view view-cascade overlay"">
+											<center>
+											<img src="' . $row['fotoSoft'] . '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
+											</center>
+												<a>
+												<div class="mask rgba-white-slight"></div>
+												</a>
+											</div>
+												<div class="card-body card-body-cascade">
+													<h5 class="text-white pb-2 pt-1"><i class="fas fa-shopping-bag"></i>  ' . $row['categoriaSoft'] . ' Id:' . $row['idSoft'] . '</h5>
+													<h4 class="font-weight-bold card-title text-white">' . $row['nombreSoft'] . '</h4>
+													<p class="card-text text-white">' . $row['descripcionSoft'] . '</p>
+													<a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id=' . $row['idSoft'] . '">Obervar Software</a>
+												</div>
+													';
+										?>
+									</td>
+								<?php
+									$con = $con + 1;
+									if ($con == 1) {
+										echo "</tr>
+										<tr>";
+										$con = 0;
+									}
+								}
+								?>
+							</tr>
+						</table>
+					</center>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	</div>
 </body>
 
 </html>

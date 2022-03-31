@@ -205,7 +205,7 @@ $date = date("d-M-Y");
                     $comA = $cnx->query("SELECT * FROM usuarios WHERE username='$camp'");
                     if ($comA) {
                 ?>
-                      <div id="Layer1" style="width:100%; height:550px; overflow: auto; border: 1px solid #ffffff;">
+                      <div id="Layer1" style="width:100%; height:200px; overflow: auto; border: 1px solid #ffffff;">
                         <center>
                           <table>
                             <br>
@@ -219,9 +219,9 @@ $date = date("d-M-Y");
                                   <?php echo '
                                   <div class="card" style="width:250px; border: 1px solid #5D00B9">
                                   <div class="card-body">
-                                    <h4 class="text-white">' . $verCA['username'] . ' </h4>
-                                    <p class="text-white"><small>' . $verCA['fechaCom'] . '</small></p>
-                                    <p class="text-white"><small>' . $verCA['comSoft'] . '</small></p>
+                                    <h4 >' . $verCA['username'] . ' </h4>
+                                    <p><small>' . $verCA['fechaCom'] . '</small></p>
+                                    <p><small>' . $verCA['comSoft'] . '</small></p>
                                     <a type="button" class="btn" style="background-color:#5D00B9; color: white;" href="BorrarComentario.php?id=' . $verCA['idCom'] . '">Borrar comentario</a>
                                   </div>
                                   </div>';
@@ -377,11 +377,11 @@ $date = date("d-M-Y");
                               ?>
                                 <td>
                                   <?php echo '
-                                  <div class="card" style="width:250px; border: 1px solid #5D00B9">
+                                  <div class="card" style="width:245px; border: 1px solid #5D00B9">
                                   <div class="card-body">
-                                    <h4 class="text-white">' . $verCA['username'] . ' </h4>
-                                    <p class="text-white"><small>' . $verCA['fechaCom'] . '</small></p>
-                                    <p class="text-white"><small>' . $verCA['comSoft'] . '</small></p>
+                                    <h4>' . $verCA['username'] . ' </h4>
+                                    <p><small>' . $verCA['fechaCom'] . '</small></p>
+                                    <p><small>' . $verCA['comSoft'] . '</small></p>
                                     <a type="button" class="btn" style="background-color:#5D00B9; color: white;" href="BorrarComentario.php?id=' . $verCA['idCom'] . '">Borrar comentario</a>
                                   </div>
                                   </div>';
