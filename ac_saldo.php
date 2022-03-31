@@ -36,7 +36,7 @@ if ($camp == null || $camp == '') {
                             </button>
                         </div>
                         <ul class="nav navbar-nav">
-                            <h1>Cloud Engine</h1>
+                            <h1 style="color:#5D00B9">Cloud Engine</h1>
                         </ul>
 
                     </div>
@@ -47,7 +47,7 @@ if ($camp == null || $camp == '') {
                         <center>
                             <h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $_SESSION['username'] ?></h2>
                         </center>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas" style='color:#ffffff;'><i class="fas fa-times fa-2x"></i></a>
                     </div>
                     <div class="offcanvas-body">
                         <div class="btn-group-vertical" style="width:280px">
@@ -90,7 +90,7 @@ if ($camp == null || $camp == '') {
                         <center>
                             <h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $_SESSION['username'] ?></h2>
                         </center>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas" style='color:#ffffff;'><i class="fas fa-times fa-2x"></i></a>
                     </div>
                     <div class="offcanvas-body">
                         <div class="btn-group-vertical" style="width:280px">
