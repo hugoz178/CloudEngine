@@ -50,7 +50,7 @@ if ($camp == null || $camp == '') {
                         <center>
                             <h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $_SESSION['username'] ?></h2>
                         </center>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas" style='color:#ffffff;'><i class="fas fa-times fa-2x"></i></a>
                     </div>
                     <div class="offcanvas-body">
                         <div class="btn-group-vertical" style="width:280px">
@@ -93,7 +93,7 @@ if ($camp == null || $camp == '') {
                         <center>
                             <h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $_SESSION['username'] ?></h2>
                         </center>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                        <a type="button" class="btn-close" data-bs-dismiss="offcanvas" style='color:#ffffff;'><i class="fas fa-times fa-2x"></i></a>
                     </div>
                     <div class="offcanvas-body">
                         <div class="btn-group-vertical" style="width:280px">
@@ -105,13 +105,12 @@ if ($camp == null || $camp == '') {
                             </a><br>
                             <a href="configuracion.php" class="btn">
                                 <h2 style="color:#5D00B9">Configuración</h2>
-                            </a><br>                            
+                            </a><br>
                             <?php
                             $sql = ("SELECT * FROM saldo where usuario='$camp'");
                             $result = mysqli_query($cnx, $sql);
                             while ($res = mysqli_fetch_array($result)) {
                                 $saldo = $res['saldo'];
-
                             }
                             if ($saldo == 0) {
                                 echo '
@@ -129,8 +128,8 @@ if ($camp == null || $camp == '') {
                                     </a>';
                                 }
                             }
-                            ?>           
-                            <br><br><br>                 
+                            ?>
+                            <br><br><br>
                             <a href="logout.php" class="btn">
                                 <h2 style="color:#5D00B9">Cerrar sesión</h2>
                             </a>
@@ -143,48 +142,48 @@ if ($camp == null || $camp == '') {
     }
     ?>
 
+    <div class="d-none d-lg-block">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-1 col-md-12">
+                    <?php
+                    if (isset($_GET['error'])) {
+                        echo "<center><div class='alert alert-danger'><i class='fas fa-times'></i></div></center><br>";
+                    }
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-1 col-md-12">
-            <?php
-      if (isset($_GET['error'])) {
-        echo "<center><div class='alert alert-danger'><i class='fas fa-times'></i></div></center><br>";
-      }
-    
-      if (isset($_GET['correcto'])) {
-       echo "<center><div class='alert alert-success'><i class='fas fa-check'></i></div></center><br>";
-      }
-      ?>
-            </div>
+                    if (isset($_GET['correcto'])) {
+                        echo "<center><div class='alert alert-success'><i class='fas fa-check'></i></div></center><br>";
+                    }
+                    ?>
+                </div>
 
-            <div class="col-lg-8 col-md-6">
-                <section>
-                    <!--for demo wrap-->
-                    <h1 style="font-size: 30px; color: #fff; text-transform: uppercase; font-weight: 300; text-align: center; margin-bottom: 15px;">Carrito de compras</h1>
-                    <div class="tbl-header">
-                        <table cellpadding="0" cellspacing="0" border="0">
-                            <thead>
-                                <tr>
-                                    <th>Foto</th>
-                                    <th>Nombre</th>
-                                    <th>Descripcion</th>
-                                    <th>categoria</th>
-                                    <th>precio</th>
-                                    <th>Borrar</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                    <div class="tbl-content">
-                        <table cellpadding="0" cellspacing="0" border="0">
-                            <tbody>
-                                <?php
-                                $consultaA = $cnx->query("SELECT * FROM carrito WHERE usuario='$camp'");
-                                while ($ver = mysqli_fetch_array($consultaA)) {
-                                    echo '
+                <div class="col-lg-8 col-md-6">
+                    <section>
+                        <!--for demo wrap-->
+                        <h1 style="font-size: 30px; color: #fff; text-transform: uppercase; font-weight: 300; text-align: center; margin-bottom: 15px;">Carrito de compras</h1>
+                        <div class="tbl-header">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <thead>
+                                    <tr>
+                                        <th>Foto</th>
+                                        <th>Nombre</th>
+                                        <th>Descripcion</th>
+                                        <th>categoria</th>
+                                        <th>precio</th>
+                                        <th>Borrar</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="tbl-content">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+                                    <?php
+                                    $consultaA = $cnx->query("SELECT * FROM carrito WHERE usuario='$camp'");
+                                    while ($ver = mysqli_fetch_array($consultaA)) {
+                                        echo '
                                         <tr>
-                                        <td> <img src="'.$ver['fotoSoft'].'" width="50px" heigth="50px"></td>
+                                        <td> <img src="' . $ver['fotoSoft'] . '" width="50px" heigth="50px"></td>
                                         <td>' . $ver['nombreSoft'] . '</td>
                                         <td>' . $ver['descripcionSoft'] . '</td>
                                         <td>' . $ver['categoriaSoft'] . '</td>
@@ -192,55 +191,148 @@ if ($camp == null || $camp == '') {
                                         <td><a type="button" class="btn btn-danger" href="elicar.php?id=' . $ver['idS'] . '">X</a></td>
                                         </tr>
                                         ';
-                                } ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            </div>
+                                    } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
 
-            <div class="col-lg-3 col-md-6">
-                <div style="width: 200px; height: 90px; position: absolute; top: 50%; background-color: rgba(255,255,255,0.3); text-align: center;">
-                    <br>
-                    <form method="POST" action="comprar.php">
-                        <?php
-                        $camp = $_SESSION['username'];
-                        $qu = "SELECT SUM(costoSoft) as co from carrito where usuario='$camp' ";
+                <div class="col-lg-3 col-md-6">
+                    <div style="width: 200px; height: 90px; position: absolute; top: 50%; background-color: rgba(255,255,255,0.3); text-align: center;">
+                        <br>
+                        <form method="POST" action="comprar.php">
+                            <?php
+                            $camp = $_SESSION['username'];
+                            $qu = "SELECT SUM(costoSoft) as co from carrito where usuario='$camp' ";
 
-                        if ($r = mysqli_query($cnx, $qu)) {
+                            if ($r = mysqli_query($cnx, $qu)) {
 
-                            $da = mysqli_fetch_assoc($r);
-                        }
+                                $da = mysqli_fetch_assoc($r);
+                            }
 
-                        if ($da['co'] == 0) {
-                            echo '<b>$0</b>&nbsp;&nbsp;&nbsp;';
-                        } else {
-                            echo '<b>$' . $da['co'] . '</b>&nbsp;&nbsp;&nbsp;';
-                        }
+                            if ($da['co'] == 0) {
+                                echo '<b>$0</b>&nbsp;&nbsp;&nbsp;';
+                            } else {
+                                echo '<b>$' . $da['co'] . '</b>&nbsp;&nbsp;&nbsp;';
+                            }
 
 
-                        $sql = ("SELECT * FROM saldo where usuario='$camp'");
-                        $result = mysqli_query($cnx, $sql);
-                        while ($res = mysqli_fetch_array($result)) {
-                            $saldo = $res['saldo'];
-                        }
+                            $sql = ("SELECT * FROM saldo where usuario='$camp'");
+                            $result = mysqli_query($cnx, $sql);
+                            while ($res = mysqli_fetch_array($result)) {
+                                $saldo = $res['saldo'];
+                            }
 
-                        if ($saldo == 0) {
-                            echo '<a class="btn btn-warning" href="saldo.php">Agregar saldo</a>';
-                        } else {
-                            if ($saldo < $da['co']) {
+                            if ($saldo == 0) {
                                 echo '<a class="btn btn-warning" href="saldo.php">Agregar saldo</a>';
                             } else {
-                                echo '<button type="submit" class="btn btn-success">Comprar</button>';
+                                if ($saldo < $da['co']) {
+                                    echo '<a class="btn btn-warning" href="saldo.php">Agregar saldo</a>';
+                                } else {
+                                    echo '<button type="submit" class="btn btn-success">Comprar</button>';
+                                }
                             }
-                        }
 
-                        ?>
-                    </form>
+                            ?>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="d-lg-none">
+        <?php
+        if (isset($_GET['error'])) {
+            echo "<center><div class='alert alert-danger'><i class='fas fa-times'></i></div></center><br>";
+        }
+
+        if (isset($_GET['correcto'])) {
+            echo "<center><div class='alert alert-success'><i class='fas fa-check'></i></div></center><br>";
+        }
+        ?>
+        <section>
+            <!--for demo wrap-->
+            <h1 style="font-size: 30px; color: #fff; text-transform: uppercase; font-weight: 300; text-align: center; margin-bottom: 15px;">Carrito de compras</h1>
+            <div class="tbl-header">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nombre</th>
+                            <th>precio</th>
+                            <th>Borrar</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="tbl-content">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                        <?php
+                        $consultaA = $cnx->query("SELECT * FROM carrito WHERE usuario='$camp'");
+                        while ($ver = mysqli_fetch_array($consultaA)) {
+                            echo '
+                                        <tr>
+                                        <td> <img src="' . $ver['fotoSoft'] . '" width="50px" heigth="50px"></td>
+                                        <td>' . $ver['nombreSoft'] . '</td>
+                                        <td>$' . $ver['costoSoft'] . '</td>
+                                        <td><a type="button" class="btn btn-danger" href="elicar.php?id=' . $ver['idS'] . '">X</a></td>
+                                        </tr>
+                                        ';
+                        } ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div style="width: 200px; height: 85px; position: absolute; top: 87%; left: 25%; background-color: rgba(255,255,255,0.3); text-align: center;">
+            <br>
+            <form method="POST" action="comprar.php">
+                <?php
+                $camp = $_SESSION['username'];
+                $qu = "SELECT SUM(costoSoft) as co from carrito where usuario='$camp' ";
+
+                if ($r = mysqli_query($cnx, $qu)) {
+
+                    $da = mysqli_fetch_assoc($r);
+                }
+
+                if ($da['co'] == 0) {
+                    echo '<b>$0</b>&nbsp;&nbsp;&nbsp;';
+                } else {
+                    echo '<b>$' . $da['co'] . '</b>&nbsp;&nbsp;&nbsp;';
+                }
+
+
+                $sql = ("SELECT * FROM saldo where usuario='$camp'");
+                $result = mysqli_query($cnx, $sql);
+                while ($res = mysqli_fetch_array($result)) {
+                    $saldo = $res['saldo'];
+                }
+
+                if ($saldo == 0) {
+                    echo '<a class="btn btn-warning" href="saldo.php">Agregar saldo</a>';
+                } else {
+                    if ($saldo < $da['co']) {
+                        echo '<a class="btn btn-warning" href="saldo.php">Agregar saldo</a>';
+                    } else {
+                        echo '<button type="submit" class="btn btn-success">Comprar</button>';
+                    }
+                }
+
+                ?>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
     <script src="funcion.js"></script>
 
 

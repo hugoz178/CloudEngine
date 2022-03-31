@@ -55,12 +55,12 @@ if (isset($_POST['opBtn'])) {
 
 ?>
 
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Cloud Engine</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- icono de la pagina -->
 	<link rel="stylesheet" href="css/estilo.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -138,39 +138,37 @@ if (isset($_POST['opBtn'])) {
 		</div>
 	</div>
 
+	<div class="d-none d-lg-block">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-2 col-md-12">
+				</div>
 
-
-
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-lg-2 col-md-12">
-			</div>
-
-			<div class="col-lg-8 col-md-6">
-				<section>
-					<!--for demo wrap-->
-					<h1 style="font-size: 30px; color: #fff; text-transform: uppercase; font-weight: 300; text-align: center; margin-bottom: 15px;">Tus productos</h1>
-					<div class="tbl-header">
-						<table cellpadding="0" cellspacing="0" border="0">
-							<thead>
-								<tr>
-									<th>Foto</th>
-									<th>Nombre</th>
-									<th>Descripcion</th>
-									<th>categoria</th>
-									<th>precio</th>
-									<th>Ver Producto</th>
-								</tr>
-							</thead>
-						</table>
-					</div>
-					<div class="tbl-content">
-						<table cellpadding="0" cellspacing="0" border="0">
-							<tbody>
-								<?php
-								$sql3 = $cnx->query("SELECT * FROM compras WHERE usuario='$camp'");
-								while ($row = mysqli_fetch_array($sql3)) {
-									echo '
+				<div class="col-lg-8 col-md-6">
+					<section>
+						<!--for demo wrap-->
+						<h1 style="font-size: 30px; color: #fff; text-transform: uppercase; font-weight: 300; text-align: center; margin-bottom: 15px;">Tus productos</h1>
+						<div class="tbl-header">
+							<table cellpadding="0" cellspacing="0" border="0">
+								<thead>
+									<tr>
+										<th>Foto</th>
+										<th>Nombre</th>
+										<th>Descripcion</th>
+										<th>categoria</th>
+										<th>precio</th>
+										<th>Ver Producto</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div class="tbl-content">
+							<table cellpadding="0" cellspacing="0" border="0">
+								<tbody>
+									<?php
+									$sql3 = $cnx->query("SELECT * FROM compras WHERE usuario='$camp'");
+									while ($row = mysqli_fetch_array($sql3)) {
+										echo '
                                         <tr>
                                         <td> <img src="' . $row['fotoSoft'] . '" width="50px" heigth="50px"></td>
                                         <td>' . $row['nombreSoft'] . '</td>
@@ -180,18 +178,60 @@ if (isset($_POST['opBtn'])) {
                                         <td><a type="button" class="btn btn-success" href="infsoftware.php?id=' . $row['idS'] . '"><i class="fas fa-angle-double-right"></i></a></td>
                                         </tr>
                                         ';
-								} ?>
-							</tbody>
-						</table>
-					</div>
-				</section>
-			</div>
+									} ?>
+								</tbody>
+							</table>
+						</div>
+					</section>
+				</div>
 
-			<div class="col-lg-2 col-md-6">
+				<div class="col-lg-2 col-md-6">
 
+				</div>
 			</div>
 		</div>
 	</div>
+	<div class="d-lg-none">
+		<section>
+			<!--for demo wrap-->
+			<h1 style="font-size: 30px; color: #fff; text-transform: uppercase; font-weight: 300; text-align: center; margin-bottom: 15px;">Tus productos</h1>
+			<div class="tbl-header">
+				<table cellpadding="0" cellspacing="0" border="0">
+					<thead>
+						<tr>
+							<th>Foto</th>
+							<th>Nombre</th>
+							<th>precio</th>
+							<th>Ver</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div class="tbl-content">
+				<table cellpadding="0" cellspacing="0" border="0">
+					<tbody>
+						<?php
+						$sql3 = $cnx->query("SELECT * FROM compras WHERE usuario='$camp'");
+						while ($row = mysqli_fetch_array($sql3)) {
+							echo '
+                                        <tr>
+                                        <td> <img src="' . $row['fotoSoft'] . '" width="50px" heigth="50px"></td>
+                                        <td>' . $row['nombreSoft'] . '</td>
+                                        <td>$' . $row['costoSoft'] . '</td>
+                                        <td><a type="button" class="btn btn-success" href="infsoftware.php?id=' . $row['idS'] . '"><i class="fas fa-angle-double-right"></i></a></td>
+                                        </tr>
+                                        ';
+						} ?>
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</div>
+
+
+
+
+
 
 
 	<div class="modal" id="myModal">
