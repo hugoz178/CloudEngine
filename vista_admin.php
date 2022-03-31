@@ -86,7 +86,7 @@ if ($campo == null || $campo == '' || $campo !== 'hugoz178') {
 											?>
 												<td>
 													<?php echo '
-													<div class="card card-cascade narrower" style="background-color:#5D00B9;" >
+													<div class="card card-cascade narrower" style="background-color:#050503;" >
 												  <div class="view view-cascade overlay"">
 												  <center>
 												  <img src="' . $row['fotoSoft'] . '" class="card-img-top" alt="photo" style="width:200px; height:200px;">
@@ -227,7 +227,7 @@ if ($campo == null || $campo == '' || $campo !== 'hugoz178') {
 										?>
 											<td>
 												<?php echo '
-													<div class="card card-cascade narrower" style="background-color:#5D00B9;" >
+													<div class="card card-cascade narrower" style="background-color:#050503" >
 												  <div class="view view-cascade overlay"">
 												  <center>
 												  <img src="' . $row['fotoSoft'] . '" class="card-img-top" alt="photo" style="width:250px; height:250px;">
