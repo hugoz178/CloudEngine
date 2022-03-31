@@ -86,10 +86,10 @@ if (isset($_POST['actualizar']))
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/style.css">
+	
 	<title>Cloud Engine</title>
 </head>
-<body style="background-color:#000000;" class="hidden">
+<body class="hidden">
 		<nav class="navbar navbar-inverse" style="background-color:black;">
 			<div class="container-fluid ">
 				<div class="navbar-header">
@@ -118,52 +118,49 @@ if (isset($_POST['actualizar']))
 				  </div>
 				</div>
 
-
-		<!-- <div align="center">
-			<img src="images/agenda.png" >
-		</div> -->
 		<div class="container">
 
 			<div class="row">
-				<div class="col-md-4">
-					<form class="login" method="post" enctype="multipart/form-data">
+				<div class="col-md-4" style="background: -webkit-linear-gradient(left, #5D00B9, #aa63f1); background: linear-gradient(to right, #5D00B9, #aa63f1);">
+					<br><br>
+					<form class="login form-group" method="post" enctype="multipart/form-data">
 						<h1 class="login-title"><span class="glyphicon glyphicon-tasks"></span> Softwares</h1>
 
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							<input id="idSoft" type="text" class="form-control input-lg" placeholder="idSoft" style="background-color: #2D2D2D; color:white;" name="idSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['idSoft']?>">
+							<input id="idSoft" type="text" class="form-control input-lg" placeholder="idSoft" name="idSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['idSoft']?>">
 						</div><br>
 
 
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							<input id="nombreSoft" type="text" class="form-control input-lg" placeholder="Nombre del software" style="background-color: #2D2D2D; color:white;" name="nombreSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['nombreSoft']?>">
+							<input id="nombreSoft" type="text" class="form-control input-lg" placeholder="Nombre del software"  name="nombreSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['nombreSoft']?>">
 						</div><br>
 
 
 						<div class="input-group">
 							<span class="input-group-addon"></span>
-							<input class="btn form-control input-lg" style="background-color: #2D2D2D; color:white;" type="file" name="foto" id="foto" accept="image/png, .jpeg, .jpg">
+							<input class="btn form-control input-lg"  type="file" name="foto" id="foto" accept="image/png, .jpeg, .jpg">
 						</div><br>
 
 						<div class="input-group">
-							<input id="descripcionSoft" type="text" class="form-control input-lg" placeholder="Descripcion del software" name="descripcionSoft" style="background-color: #2D2D2D; color:white;" value="<?php if (isset($_POST['buscar'])) echo $campo['descripcionSoft']?>">
+							<input id="descripcionSoft" type="text" class="form-control input-lg" placeholder="Descripcion del software" name="descripcionSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['descripcionSoft']?>">
 						</div><br>
 
 
 						<div class="input-group">
-							<input id="costoSoft" type="text" class="form-control input-lg" placeholder="Precio del softwareftware" style="background-color: #2D2D2D; color:white;" name="costoSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['costoSoft']?>" >
+							<input id="costoSoft" type="text" class="form-control input-lg" placeholder="Precio del softwareftware" name="costoSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['costoSoft']?>" >
 						</div><br>
 
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-							<input id="categoriaSoft" type="text" style="background-color: #2D2D2D; color:white;" class="form-control input-lg" placeholder="Categoria" name="categoriaSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['categoriaSoft']?>">
+							<input id="categoriaSoft" type="text" class="form-control input-lg" placeholder="Categoria" name="categoriaSoft" value="<?php if (isset($_POST['buscar'])) echo $campo['categoriaSoft']?>">
 						</div><br>
 
 						<center>
-						<button type="submit" class="btn" style="background-color:#5D00B9" name="registrar"><i class='fas fa-plus' style='color:white; font-size:26px'></i></button>
+						<button type="submit" class="btn" style="background-color:#5D00B9" name="registrar"><i class='fas fa-plus' style='color:white; font-size:26px; border: 1px solid;'></i></button>
 
-						<button type="submit" class="btn" style="background-color:#5D00B9" name="eliminar"><i class="material-icons" style='color:white; font-size:26px'>delete</i></button>
+						<button type="submit" class="btn" style="background-color:#5D00B9" name="eliminar"><i class="material-icons" style='color:white;'>delete</i></button>
 						
 						<button type="submit" class="btn" style="background-color:#5D00B9" name="buscar"><i class='fas fa-search' style='color:white; font-size:26px'></i></button>
 
@@ -187,7 +184,7 @@ if (isset($_POST['actualizar']))
 ?>
 <td>
     <?php echo '
-		<div class="card card-cascade narrower" style="background-color:#050503;" >
+		<div class="card card-cascade narrower" style="background-color:#C246F9;" >
 		    <div class="view view-cascade overlay"">
 		 <center>
 		  <img src="'.$row['fotoSoft'].'" class="card-img-top" alt="photo" style="width:300px; height:300px;">

@@ -158,13 +158,13 @@ if (isset($_POST['actpass']))
 
             <div style="margin-bottom: 25px" class="input-group">
               <button type="button" class="btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#tel">
-                Cambiar CELULAR
+                Cambiar numero de celular
               </button>
             </div>
 
             <div style="margin-top:10px" class="form-group">
               <div class="col-sm-12 controls">
-                <button type="button" class="btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#myModal">
+                <button type="button" class="btn btn-danger form-control" data-bs-toggle="modal" data-bs-target="#myModal" >
                   Eliminar cuenta
                 </button>
               </div>
