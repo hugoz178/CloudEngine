@@ -13,12 +13,13 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 	die();
 }
 ?>
-
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cloud Engine</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
@@ -41,12 +42,12 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 		</div>
 	</nav>
 
-	<div class="offcanvas offcanvas-start" id="demo" style="background-color:#050503">
+	<div class="offcanvas offcanvas-start" id="demo" style="background-color:#050503;">
 		<div class="offcanvas-header">
 			<center>
 				<h2 class="offcanvas-title text-white" style="text-align: center;">Usuario: <?php echo $_SESSION['username'] ?></h2>
 			</center>
-			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" style='color:#5D00B9;'></button>
+			<a type="button" class="btn-close" data-bs-dismiss="offcanvas" style='color:#ffffff;'><i class="fas fa-times fa-2x"></i></a>
 		</div>
 		<div class="offcanvas-body">
 			<div class="btn-group-vertical" style="width:280px">
@@ -94,65 +95,65 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 	</div>
 
 	<?php
-
 	if (isset($_POST['opBtn'])) {
-
 		$as = $_POST['asunto'];
 		$op = $_POST['opinion'];
 
-		$registrar = "INSERT INTO opiniones (username,asunto,opinion)
-	VALUES ('$camp','$as','$op');";
-
+		$registrar = "INSERT INTO opiniones (username,asunto,opinion) VALUES ('$camp','$as','$op');";
 		$listo = mysqli_query($cnx, $registrar);
-
 		if ($listo) {
 			echo "
-				  <div class='toast show' style='width:100%'>
+			<center>
+				  <div class='toast show' style='background-color:#5D00B9;'>
+				  <center>
 				    <div class='toast-header'>
 				      <strong class='me-auto'>Formulario enviado!!</strong>
 				      <button type='button' class='btn-close' data-bs-dismiss='toast'></button>
 				    </div>
 				    <div class='toast-body'>
-				      <p>Gracias por contactar con nosotros. Tu opinión nos interesa.</p>
+				      <p>Gracias por contactar con nosotros. <br> Tu opinión nos interesa.</p>
 				      <p><small>Puedes cerrar esta pestañita</small></p>
 				    </div>
+					<center>
 				  </div>
+				  <center>
 				  ";
 		} else {
-			echo "
-				  <div class='toast show' style='width:100%'>
+			echo "<center>
+				  <div class='toast show' style='Background-color:#F93154;'>
+				  <center>
 				    <div class='toast-header'>
 				      <strong class='me-auto'>Error al enviar</strong>
 				      <button type='button' class='btn-close' data-bs-dismiss='toast'></button>
 				    </div>
 				    <div class='toast-body'>
-				      <p>Upss! Parece que hubo un error al enviar el formulario. Intentalo mas tarde</p>
+				      <p>Upss! Parece que hubo un error al enviar el formulario. <br> Intentalo mas tarde</p>
 				      <p><small>Puedes cerrar esta pestañita</small></p>
 				    </div>
+					</center>
 				  </div>
+				  </center>
 				  ";
 		}
 	}
-
 	?>
 
 
-	<div class="container">
-		<div class="row gx-3 justify-content-center">
-			<div class="col-lg-1 col-md-12"></div>
-
-			<div class="col-lg-10 col-md-6">
-				<table>
-					<br>
-					<tr>
-						<?php
-						$con = 0;
-						$sql3 = $cnx->query("SELECT * FROM software");
-						while ($row = mysqli_fetch_array($sql3)) {
-
-						?>
-							<td>
-								<?php echo '
+	<div class="d-none d-lg-block">
+		<div class="container">
+			<div class="row gx-3 justify-content-center">
+				<div class="col-lg-1 col-md-12"></div>
+				<div class="col-lg-10 col-md-6">
+					<table>
+						<br>
+						<tr>
+							<?php
+							$con = 0;
+							$sql3 = $cnx->query("SELECT * FROM software");
+							while ($row = mysqli_fetch_array($sql3)) {
+							?>
+								<td>
+									<?php echo '
 										<div class="card card-cascade narrower" style="background-color:#050503" >
 										  <div class="view view-cascade overlay"">
 										    <center>
@@ -169,66 +170,111 @@ if ($camp == null || $camp == '' || $camp == 'hugoz178') {
 												    <a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id=' . $row['idSoft'] . '">Obervar Software</a>
 												  </div>
 												</div>&nbsp';
-								?>
-							</td>
-						<?php
-							$con = $con + 1;
-							if ($con == 3) {
-								echo "</tr>
+									?>
+								</td>
+							<?php
+								$con = $con + 1;
+								if ($con == 3) {
+									echo "</tr>
 													<tr>";
-								$con = 0;
+									$con = 0;
+								}
 							}
-						}
-						?>
-					</tr>
-				</table>
+							?>
+						</tr>
+					</table>
+				</div>
+				<div class="col-lg-1 col-md-6"></div>
 			</div>
-
-			<div class="col-lg-1 col-md-6"></div>
 		</div>
 	</div>
-	<br><br>
+	<div class="d-lg-none">
+		<div class="container">
+			<div class="row gx-3 justify-content-center">
+				<div class="col-lg-1 col-md-12"></div>
+				<div class="col-lg-10 col-md-6">
+					<center>
+					<table>
+						<br>
+						<tr>
+							<?php
+							$con = 0;
+							$sql3 = $cnx->query("SELECT * FROM software");
+							while ($row = mysqli_fetch_array($sql3)) {
+							?>
+								<td>
+									<?php echo '
+										<div class="card card-cascade narrower" style="background-color:#050503" >
+										  <div class="view view-cascade overlay"">
+										    <center>
+											  <img src="' . $row['fotoSoft'] . '" class="card-img-top" alt="photo" style="width:300px; height:300px;">
+										    </center>
+												<a>
+												    <div class="mask rgba-white-slight"></div>
+												</a>
+										   </div>
+												<div class="card-body card-body-cascade">
+												    <h5 class="text-white pb-2 pt-1"><i class="fas fa-shopping-bag"></i>  ' . $row['categoriaSoft'] . '</h5>
+												    <h4 class="font-weight-bold card-title text-white">' . $row['nombreSoft'] . '</h4>
+												    <p class="card-text text-white">' . $row['descripcionSoft'] . '</p>
+												    <a class="btn btn-secondary" style="background-color:#5D00B9" href="infsoftware.php?id=' . $row['idSoft'] . '">Obervar Software</a>
+												  </div>
+												</div>';
+									?>
+								</td>
+							<?php
+								$con = $con + 1;
+								if ($con == 1) {
+									echo "</tr>
+													<tr>";
+									$con = 0;
+								}
+							}
+							?>
+						</tr>
+					</table>
+					</center>
+				</div>
+				<div class="col-lg-1 col-md-6"></div>
+			</div>
+		</div>
 
+	</div>
+
+	<br><br>
 	<div class="modal" id="myModal">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
-
 				<!-- Modal Header -->
 				<div class="modal-header">
 					<h4 class="modal-title">Escribe tu opinon</h4>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 				</div>
-
 				<!-- Modal body -->
 				<div class="modal-body">
 					<center>
 						<form id="form" name="form" class="form-horizontal" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
-
 							<div class="form-group">
 								<label for="usuario" class="col-md-3 control-label">Asunto del mensaje</label>
 								<div class="col-md-11">
 									<input type="text" name="asunto" id="asunto" placeholder="Escribe el asunto">
 								</div>
 							</div>
-
 							<div class="form-group">
 								<label for="usuario" class="col-md-3 control-label">Opinion</label>
 								<div class="col-md-11">
 									<textarea cols="40" rows="5" placeholder="Escribe tu opinon" name="opinion" id="opinion"></textarea>
 								</div>
 							</div>
-
 							<div class="form-group">
 								<div class="col-md-offset-3 col-md-10">
 									<br>
 									<button id="opBtn" name="opBtn" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Enviar opinon</button>
 								</div>
 							</div>
-
 						</form>
 					</center>
 				</div>
-
 				<!-- Modal footer -->
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
